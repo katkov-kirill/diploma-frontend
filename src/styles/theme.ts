@@ -11,6 +11,7 @@ export const theme = createTheme({
     },
     bg: {
       main: '#16191E',
+      light: '#D9D9D9',
     },
   },
 });

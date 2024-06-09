@@ -1,16 +1,25 @@
-import { Route, Routes } from 'react-router-dom';
-import { SignIn } from './components/pages/SignIn';
 import './App.css';
+
+import { Route, Routes } from 'react-router-dom';
+import { SignIn, SignUp, Welcome } from './components/pages';
+
 import Box from '@mui/material/Box';
+import { LanguageBar } from '@components/modules';
+import { Stack } from '@mui/material';
 
 function App() {
   return (
-    <Box width="100%" minHeight="100vh">
-      <Routes>
-        <Route path="sign-in" element={<SignIn />} />
-        <Route path="*" element={<div>not found</div>} />
-      </Routes>
-    </Box>
+    <Stack>
+      <LanguageBar />
+      <Box width="100%">
+        <Routes>
+          <Route path="welcome" element={<Welcome />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="*" element={<div>not found</div>} />
+        </Routes>
+      </Box>
+    </Stack>
   );
 }
 

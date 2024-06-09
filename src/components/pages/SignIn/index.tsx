@@ -1,16 +1,5 @@
-import Box from '@mui/material/Box';
-import BGImage from '@assets/login-bg.png';
+import { Box } from '@mui/material';
 
 export const SignIn = () => {
-  return (
-    <Box
-      width="100%"
-      minHeight="100vh"
-      sx={{
-        backgroundImage: `url(${BGImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    ></Box>
-  );
+  return <Box minHeight="calc(100vh - 24px)">Sign In</Box>;
 };
