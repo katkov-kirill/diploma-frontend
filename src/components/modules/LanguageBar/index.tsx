@@ -10,7 +10,11 @@ export const LanguageBar = () => {
       <Stack flexDirection="row" gap="8px">
         <Text
           component="span"
-          sx={{ cursor: 'pointer', ':hover': { color: 'primary.main' } }}
+          sx={{
+            cursor: 'pointer',
+            color: i18n.language === 'uk' ? 'primary.main' : 'white',
+            ':hover': { color: 'primary.main' },
+          }}
           onClick={() => {
             i18n.changeLanguage('uk');
           }}
@@ -19,7 +23,11 @@ export const LanguageBar = () => {
         </Text>
         <Text
           component="span"
-          sx={{ cursor: 'pointer', ':hover': { color: 'primary.main' } }}
+          sx={{
+            cursor: 'pointer',
+            color: i18n.language === 'en' ? 'primary.main' : 'white',
+            ':hover': { color: 'primary.main' },
+          }}
           onClick={() => {
             i18n.changeLanguage('en');
           }}

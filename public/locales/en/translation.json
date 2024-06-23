@@ -1,5 +1,14 @@
 {
   "welcomePage": {
-    "title": "Welcome"
+    "title": "Welcome",
+    "subtitle": "Thank you for choosing our platform. We hope you find the perfect opportunity to develop your career. If you already have an account, please log in. If not, you can sign up now."
+  },
+  "signInPage": {
+    "noAccount": "Don't have an account?"
+  },
+  "general": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "rememberMe": "Remember me"
   }
 }

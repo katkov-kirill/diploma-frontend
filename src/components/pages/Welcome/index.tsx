@@ -42,18 +42,16 @@ export const Welcome = () => {
           {t('welcomePage.title')}
         </Text>
         <Text maxWidth="560px" align="center" mb="30px">
-          Thank you for choosing our platform. We hope you find the perfect
-          opportunity to develop your career. If you already have an account,
-          please log in. If not, you can sign up now.
+          {t('welcomePage.subtitle')}
         </Text>
 
         <Stack width="100%" gap="30px">
           <Button fullWidth $variant="secondary" onClick={handleRedirectSignIn}>
-            Sign in
+            <Text fontWeight={600}>{t('general.signin')}</Text>
           </Button>
 
           <Button fullWidth $variant="primary" onClick={handleRedirectSignUp}>
-            Sign up
+            <Text fontWeight={600}>{t('general.signup')}</Text>
           </Button>
         </Stack>
       </Stack>
