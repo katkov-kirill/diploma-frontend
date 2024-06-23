@@ -24,7 +24,10 @@ export const Welcome = () => {
       minHeight="calc(100vh - 24px)"
       display="flex"
       flexDirection="column"
-      justifyContent="center"
+      justifyContent={{
+        xs: 'end',
+        md: 'center',
+      }}
       alignItems="center"
       sx={{
         backgroundImage: `url(${BGImage})`,
@@ -33,11 +36,23 @@ export const Welcome = () => {
       }}
     >
       <Stack
-        maxWidth="560px"
+        maxWidth={{ xs: '100%', md: '560px' }}
+        width="100%"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
         padding="20px"
+        bgcolor={{ xs: '#242424', md: 'transparent' }}
+        sx={{
+          borderTopLeftRadius: {
+            xs: '86px',
+            md: 0,
+          },
+          borderTopRightRadius: {
+            xs: '86px',
+            md: 0,
+          },
+        }}
       >
         <Text variant="h2" fontWeight={600} mb="10px">
           {t('welcomePage.title')}

@@ -26,10 +26,6 @@ export const SignIn = () => {
           md: '20px',
         }}
         sx={{
-          // display: {
-          //   xs: 'none',
-          //   md: 'flex',
-          // },
           flexDirection: {
             xs: 'column-reverse',
             md: 'row',
@@ -120,27 +116,6 @@ export const SignIn = () => {
           }}
         />
       </Stack>
-
-      {/* <Stack
-        minHeight="calc(100vh - 24px)"
-        width="100%"
-        sx={{
-          display: {
-            xs: 'flex',
-            md: 'none',
-          },
-        }}
-      >
-        <Box
-          width="100%"
-          maxWidth="1036px"
-          height="calc(100%)"
-          sx={{
-            backgroundImage: `url(${SignInBg})`,
-            backgroundSize: 'cover',
-          }}
-        />
-      </Stack> */}
     </Box>
   );
 };
