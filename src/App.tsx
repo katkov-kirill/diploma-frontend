@@ -1,7 +1,12 @@
 import './App.css';
 
+import {
+  NotFoundPlaceholder,
+  SignIn,
+  SignUp,
+  Welcome,
+} from './components/pages';
 import { Route, Routes } from 'react-router-dom';
-import { SignIn, SignUp, Welcome } from './components/pages';
 
 import Box from '@mui/material/Box';
 import { LanguageBar } from '@components/modules';
@@ -16,7 +21,7 @@ function App() {
           <Route path="welcome" element={<Welcome />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
-          <Route path="*" element={<div>not found</div>} />
+          <Route path="*" element={<NotFoundPlaceholder />} />
         </Routes>
       </Box>
     </Stack>
