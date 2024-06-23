@@ -37,6 +37,7 @@ export const Welcome = () => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
+        padding="20px"
       >
         <Text variant="h2" fontWeight={600} mb="10px">
           {t('welcomePage.title')}

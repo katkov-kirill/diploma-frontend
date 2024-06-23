@@ -4,7 +4,9 @@
     "subtitle": "Thank you for choosing our platform. We hope you find the perfect opportunity to develop your career. If you already have an account, please log in. If not, you can sign up now."
   },
   "signInPage": {
-    "noAccount": "Don't have an account?"
+    "noAccount": "Don't have an account?",
+    "welcomeBack": "Welcome back",
+    "subtitle": "Don't forget to check the latest job updates and your profile. Please sign in to continue. "
   },
   "general": {
     "signin": "Sign In",
