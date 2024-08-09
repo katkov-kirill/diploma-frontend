@@ -1,14 +1,35 @@
 import { Box, Checkbox, Stack } from '@mui/material';
 import { Button, Input, Text } from '@components/common';
 
+import { Dropdown } from '@components/common/Dropdown';
 import { GoogleButton } from '@components/common/GoogleButton';
+import React from 'react';
 import SignInBg from '@assets/signin-bg.png';
 import { useNavigate } from 'react-router-dom';
+import { useRegisterMutation } from 'src/services/userApi';
 import { useTranslation } from 'react-i18next';
 
 export const SignUp = () => {
+  const [formInputs, setFormInputs] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    role: '',
+  });
   const { t } = useTranslation();
+  const [register, result] = useRegisterMutation();
   const navigate = useNavigate();
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleChangeRole = (option: { value: string; label: string }) => {
+    setFormInputs((prev) => ({ ...prev, role: option?.value ?? '' }));
+  };
+
+  console.log('formData: ', formInputs);
 
   return (
     <Box
@@ -61,8 +82,46 @@ export const SignUp = () => {
             >
               {t('signUpPage.subtitle')}
             </Text>
-            <Input type="email" className="mb-[32px]" placeholder="E-mail" />
-            <Input type="password" placeholder="Password" />
+            <Input
+              name="firstName"
+              type="text"
+              className="mb-[16px]"
+              placeholder="First name"
+              onChange={handleChange}
+            />
+            <Input
+              name="lastName"
+              type="text"
+              className="mb-[16px]"
+              placeholder="Last name"
+              onChange={handleChange}
+            />
+            <Input
+              name="email"
+              type="email"
+              className="mb-[16px]"
+              placeholder="E-mail"
+              onChange={handleChange}
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={handleChange}
+              className="mb-[16px]"
+            />
+            <Box>
+              <Dropdown
+                options={[
+                  { label: 'Individual', value: 'user' },
+                  { label: 'Company', value: 'company' },
+                ]}
+                label="I am a..."
+                onChange={handleChangeRole}
+                isClearable
+                placeholder="I am a..."
+              />
+            </Box>
             <Stack direction="row" alignItems="center">
               <Checkbox
                 sx={{
@@ -74,7 +133,20 @@ export const SignUp = () => {
               />
               <Text>{t('general.rememberMe')}</Text>
             </Stack>
-            <Button fullWidth $variant="primary">
+            <Button
+              fullWidth
+              $variant="primary"
+              onClick={() => {
+                register({
+                  first_name: formInputs.firstName,
+                  last_name: formInputs.lastName,
+                  password: formInputs.password,
+                  email: formInputs.email,
+                  password_confirmation: formInputs.password,
+                  role: formInputs.role,
+                });
+              }}
+            >
               <Text fontWeight={600}>{t('general.signup')}</Text>
             </Button>
             <Text
