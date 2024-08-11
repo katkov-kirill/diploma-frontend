@@ -1,14 +1,32 @@
 import { Box, Checkbox, Stack } from '@mui/material';
 import { Button, Input, Text } from '@components/common';
 
+import { Dropdown } from '@components/common/Dropdown';
 import { GoogleButton } from '@components/common/GoogleButton';
+import React from 'react';
 import SignInBg from '@assets/signin-bg.png';
+import { useLoginMutation } from 'src/services/userApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export const SignIn = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [login, result] = useLoginMutation();
+
+  const [formInputs, setFormInputs] = React.useState({
+    email: '',
+    password: '',
+    role: '',
+  });
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleChangeRole = (option: { value: string; label: string }) => {
+    setFormInputs((prev) => ({ ...prev, role: option?.value ?? '' }));
+  };
 
   return (
     <Box
@@ -61,8 +79,32 @@ export const SignIn = () => {
             >
               {t('signInPage.subtitle')}
             </Text>
-            <Input type="email" className="mb-[32px]" placeholder="E-mail" />
-            <Input type="password" placeholder="Password" />
+            <Input
+              name="email"
+              type="email"
+              className="mb-[16px]"
+              placeholder="E-mail"
+              onChange={handleChange}
+            />
+            <Input
+              name="password"
+              type="password"
+              className="mb-[16px]"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+            <Box>
+              <Dropdown
+                options={[
+                  { label: 'Individual', value: 'user' },
+                  { label: 'Company', value: 'company' },
+                ]}
+                label="I am a..."
+                onChange={handleChangeRole}
+                isClearable
+                placeholder="I am a..."
+              />
+            </Box>
             <Stack direction="row" alignItems="center">
               <Checkbox
                 sx={{
@@ -74,7 +116,17 @@ export const SignIn = () => {
               />
               <Text>{t('general.rememberMe')}</Text>
             </Stack>
-            <Button fullWidth $variant="primary">
+            <Button
+              fullWidth
+              $variant="primary"
+              onClick={() => {
+                login({
+                  password: formInputs.password,
+                  email: formInputs.email,
+                  role: formInputs.role,
+                }).then((res) => console.log('LOGIN RES: ', login));
+              }}
+            >
               <Text fontWeight={600}>{t('general.signin')}</Text>
             </Button>
             <Text
