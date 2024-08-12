@@ -1,9 +1,7 @@
 import React from 'react';
 
-const OnBoarding = () => {
+export const OnBoarding = () => {
   return (
     <div>OnBoarding</div>
   )
 };
-
-export default OnBoarding;
