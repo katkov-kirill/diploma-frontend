@@ -41,7 +41,7 @@ export const SignIn = () => {
 
       const { token, user } = response.data;
 
-      console.log('Token:', token);
+      // console.log('Token:', token);
 
       if (token && user) {
         dispatch(
@@ -57,7 +57,7 @@ export const SignIn = () => {
         // console.log('Token stored:', localStorage.getItem('token'));
         // console.log('User stored:', localStorage.getItem('user'));
 
-        // navigate('/dashboard');
+        navigate('/dashboard');
       } else {
         console.error('Token or user data is missing');
       }
