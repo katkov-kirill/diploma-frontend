@@ -8,11 +8,14 @@ import SignInBg from '@assets/signin-bg.png';
 import { useLoginMutation } from 'src/services/userApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from 'src/store/userSlice';
 
 export const SignIn = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [login, result] = useLoginMutation();
+  const [login] = useLoginMutation();
+  const dispatch = useDispatch();
 
   const [formInputs, setFormInputs] = React.useState({
     email: '',
@@ -26,6 +29,41 @@ export const SignIn = () => {
 
   const handleChangeRole = (option: { value: string; label: string }) => {
     setFormInputs((prev) => ({ ...prev, role: option?.value ?? '' }));
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await login({
+        password: formInputs.password,
+        email: formInputs.email,
+        role: formInputs.role,
+      }).unwrap();
+
+      const { token, user } = response.data;
+
+      console.log('Token:', token);
+
+      if (token && user) {
+        dispatch(
+          loginSuccess({
+            token,
+            user,
+          })
+        );
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // console.log('Token stored:', localStorage.getItem('token'));
+        // console.log('User stored:', localStorage.getItem('user'));
+
+        // navigate('/dashboard');
+      } else {
+        console.error('Token or user data is missing');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   return (
@@ -116,17 +154,7 @@ export const SignIn = () => {
               />
               <Text>{t('general.rememberMe')}</Text>
             </Stack>
-            <Button
-              fullWidth
-              $variant="primary"
-              onClick={() => {
-                login({
-                  password: formInputs.password,
-                  email: formInputs.email,
-                  role: formInputs.role,
-                }).then((res) => console.log('LOGIN RES: ', login));
-              }}
-            >
+            <Button fullWidth $variant="primary" onClick={handleLogin}>
               <Text fontWeight={600}>{t('general.signin')}</Text>
             </Button>
             <Text
