@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { userApi } from '../services/userApi';
+import userReducer from './userSlice'; 
 
 // Or from '@reduxjs/toolkit/query/react'
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
+    user: userReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -14,3 +16,6 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
