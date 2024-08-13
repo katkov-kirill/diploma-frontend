@@ -6,6 +6,8 @@ import {
   SignUp,
   Welcome,
   OnBoarding,
+  Help,
+  Report,
 } from './components/pages';
 import { Route, Routes } from 'react-router-dom';
 
@@ -23,6 +25,8 @@ function App() {
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path='on-boarding' element={<OnBoarding />} />
+          <Route path='help' element={<Help />} />
+          <Route path='report' element={<Report />} />
           <Route path="*" element={<NotFoundPlaceholder />} />
         </Routes>
       </Box>
