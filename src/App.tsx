@@ -5,6 +5,7 @@ import {
   SignIn,
   SignUp,
   Welcome,
+  Profile
 } from './components/pages';
 import { Route, Routes } from 'react-router-dom';
 
@@ -21,6 +22,8 @@ function App() {
           <Route path="welcome" element={<Welcome />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
+          {/* <Route path="profile/:id" element={<Profile />} /> */}
+          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFoundPlaceholder />} />
         </Routes>
       </Box>
