@@ -17,5 +17,19 @@
     "signin": "Sign In",
     "signup": "Sign Up",
     "rememberMe": "Remember me"
+  },
+  "onboarding": {
+    "about": {
+      "title": "About Us",
+      "subtitle": "Welcome to our WorkWave platform! Here you will be able to find personal vacancies or find the best candidates for your company. Our mission is to provide an efficient and convenient job or employee search that meets your needs and expectations."
+    },
+    "weAre": {
+      "title": "What Are We?",
+      "subtitle": "WorkWave is an innovative web-based platform that provides a convenient and effective tool for job search, networking and career development. Our platform combines all the necessary functions for successful career growth and cooperation between employers and candidates. Our platform not only provides an opportunity to search for jobs and post vacancies, but also creates a space for building valuable connections and sharing experiences between professionals in various fields."
+    },
+    "weDo": {
+      "title": "What We Do?",
+      "subtitle": "Our users have the opportunity not only to create a detailed profile with all the necessary information about themselves, but also to actively interact with other members of the community. Thanks to a convenient system for searching for vacancies and job opportunities, our users can quickly find the perfect match for themselves. In addition, communication with company representatives, interaction with industry professionals, and the exchange of valuable experience become easy and accessible."
+    }
   }
 }
