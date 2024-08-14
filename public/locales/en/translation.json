@@ -31,5 +31,18 @@
       "title": "What We Do?",
       "subtitle": "Our users have the opportunity not only to create a detailed profile with all the necessary information about themselves, but also to actively interact with other members of the community. Thanks to a convenient system for searching for vacancies and job opportunities, our users can quickly find the perfect match for themselves. In addition, communication with company representatives, interaction with industry professionals, and the exchange of valuable experience become easy and accessible."
     }
+  },
+  "help": {
+    "placeholder": "How can we help?",
+    "link": "Create a support ticket"
+  },
+  "helpTicket": {
+    "email": "Change or add email address",
+    "password": "Reset your password",
+    "premium": "Cancel Premium subscription",
+    "closeAccount": "Close your account",
+    "visibility": "WorkWave public profile visibility",
+    "question": "Your Question",
+    "send": "Send"
   }
 }
