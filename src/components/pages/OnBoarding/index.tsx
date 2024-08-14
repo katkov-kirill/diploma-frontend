@@ -2,11 +2,9 @@ import Box from '@mui/material/Box'
 import BGImage from '@assets/onboarding_bgimage.jpeg'
 import LogoImage from '@assets/workwave_logo.png'
 import { BottomNavigation, BottomNavigationAction, Stack } from '@mui/material'
-// import { ThemeProvider } from '@mui/material/styles'
 import { Text } from '@components/common'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
-// import { theme } from '../../../styles/theme.ts'
 
 export const OnBoarding = () => {
 
@@ -52,8 +50,8 @@ export const OnBoarding = () => {
         alignItems="center"
         padding="20px"
         bgcolor="#28282CC2"
+        flexGrow={1}
         sx={{
-          flexGrow: 1,
           borderTopLeftRadius: {
             xs: '86px',
             md: 0,
@@ -64,7 +62,7 @@ export const OnBoarding = () => {
           },
         }}
       >
-        <img src={LogoImage} alt="WorkWave" style={{ objectFit: 'contain', width: '60%' }} />
+        <img src={LogoImage} alt="WorkWave" style={{ objectFit: 'contain', width: '50%' }} />
         <Text fontSize="32px" fontWeight={600} mb="10px">
           {t('onboarding.about.title')}
         </Text>
@@ -85,7 +83,6 @@ export const OnBoarding = () => {
         </Text>
 
       </Stack>
-      {/*<ThemeProvider theme={theme}>*/}
       <BottomNavigation
         component="footer"
         showLabels
@@ -94,11 +91,11 @@ export const OnBoarding = () => {
           setValue(newValue)
         }}
         sx={{
-          "& .MuiBottomNavigationAction-root": {
-            color: "secondary.main",
+          '& .MuiBottomNavigationAction-root': {
+            color: 'secondary.main',
           },
-          "& .Mui-selected, svg": {
-            color: "primary.main",
+          '& .Mui-selected, svg': {
+            color: 'primary.main',
           },
           alignSelf: 'stretch',
           backgroundColor: 'bg.main',
@@ -111,7 +108,6 @@ export const OnBoarding = () => {
         <BottomNavigationAction label="News" />
         <BottomNavigationAction label="Help Center" />
       </BottomNavigation>
-      {/*</ThemeProvider>*/}
     </Box>
   )
 }
