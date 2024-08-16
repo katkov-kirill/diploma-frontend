@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { Text, Button } from '@components/common'
 import { useTranslation } from 'react-i18next'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 
 export const Report = () => {
 
@@ -31,7 +31,6 @@ export const Report = () => {
 
   const handleReport = async (event: FormEvent) => {
     event.preventDefault()
-    setReport({ category: category, question: question })
     if (question !== '' && category !== '') {
       const requestOptions = {
         method: 'POST',
@@ -47,7 +46,13 @@ export const Report = () => {
     console.log(report)
     setQuestion('')
     setCategory('')
+    closeForm()
   }
+
+  useEffect(() => {
+    setReport({ category: category, question: question })
+  }, [category, question])
+
   return (
     <Box
       width="100%"
