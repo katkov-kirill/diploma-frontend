@@ -102,11 +102,11 @@ export const OnBoarding = () => {
           justifySelf: 'end',
         }}
       >
-        <BottomNavigationAction label="Home" />
-        <BottomNavigationAction label="Contact Us" />
-        <BottomNavigationAction label="Services" />
-        <BottomNavigationAction label="News" />
-        <BottomNavigationAction label="Help Center" />
+        <BottomNavigationAction label={t('bottomNav.home')} />
+        <BottomNavigationAction label={t('bottomNav.contactUs')} />
+        <BottomNavigationAction label={t('bottomNav.services')} />
+        <BottomNavigationAction label={t('bottomNav.news')} />
+        <BottomNavigationAction label={t('bottomNav.help')} />
       </BottomNavigation>
     </Box>
   )
