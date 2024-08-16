@@ -56,6 +56,12 @@
       "messaging": "Messaging and Connections",
       "premium": "Premium Subscriptions",
       "other": "Other"
+    },
+    "form": {
+      "title": "Please complete and submit this form for assistance",
+      "name": "Your Name",
+      "email": "Email",
+      "altEmail": "Alternate Email"
     }
   },
   "bottomNav": {
