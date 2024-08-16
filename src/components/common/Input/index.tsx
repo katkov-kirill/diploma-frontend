@@ -9,7 +9,6 @@ export const Input: React.FC<Props> = ({
   return (
     <input
       type={type}
-      onChange={onChange}
       placeholder={placeholder}
       name={name}
       onChange={onChange}
