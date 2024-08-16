@@ -9,7 +9,7 @@ import {
   //InputAdornment, IconButton, SvgIcon,
   Modal,
 } from '@mui/material'
-import { Text, Button } from '@components/common'
+import { Text, Button, Input } from '@components/common'
 import { useTranslation } from 'react-i18next'
 import { useState, FormEvent, useEffect } from 'react'
 
@@ -19,8 +19,17 @@ export const Report = () => {
   const [value, setValue] = useState(0)
   const [showForm, setShowForm] = useState<boolean>(false)
   const [category, setCategory] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [altEmail, setAltEmail] = useState('')
   const [question, setQuestion] = useState('')
-  const [report, setReport] = useState({ category: category, question: question })
+  const [report, setReport] = useState({
+    category: category,
+    name: name,
+    email: email,
+    altEmail: altEmail,
+    question: question,
+  })
   const handleReportForm = (cat: string) => {
     setCategory(cat)
     setShowForm(true)
@@ -50,8 +59,14 @@ export const Report = () => {
   }
 
   useEffect(() => {
-    setReport({ category: category, question: question })
-  }, [category, question])
+    setReport({
+      category: category,
+      name: name,
+      email: email,
+      altEmail: altEmail,
+      question: question,
+    })
+  }, [category, name, email, altEmail, question])
 
   return (
     <Box
@@ -104,10 +119,10 @@ export const Report = () => {
           },
         }}
       >
-        <Stack>
-          <Text variant="h6">{t('report.howHelp')}</Text>
-          <Text variant="h6">{t('report.selectCategory')}</Text>
-        </Stack>
+
+        <Text variant="h4">{t('report.howHelp')}</Text>
+
+        <Text variant="body1">{t('report.selectCategory')}</Text>
         <Stack gap={1}>
           <Button fullWidth $variant="transparent"
                   onClick={() => handleReportForm('pages')}>{t('report.buttons.pages')}</Button>
@@ -147,7 +162,26 @@ export const Report = () => {
             }}
           >
             <Stack component="form" width="100%" gap="10px" onSubmit={handleReport}>
-              <Text variant={'body1'} mb={1}>WorkWave shortcuts</Text>
+              <Text variant={'body1'} mb={1}>{t('report.form.title')}</Text>
+
+              <Input
+                type="text"
+                placeholder={t('report.form.name')}
+                className="bg-white text-black w-2/3 mt-auto"
+                onChange={e => setName(e.target.value)}
+              />
+              <Input
+                type="email"
+                placeholder={t('report.form.email')}
+                className="bg-white text-black w-2/3 mt-auto"
+                onChange={e => setEmail(e.target.value)}
+              />
+              <Input
+                type="email"
+                placeholder={t('report.form.altEmail')}
+                className="bg-white text-black w-2/3 mt-auto"
+                onChange={e => setAltEmail(e.target.value)}
+              />
 
               <TextField
                 id="question"
