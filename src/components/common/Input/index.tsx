@@ -1,3 +1,4 @@
+import React from 'react'
 export const Input: React.FC<Props> = ({
   type,
   className,
@@ -8,6 +9,7 @@ export const Input: React.FC<Props> = ({
   return (
     <input
       type={type}
+      onChange={onChange}
       placeholder={placeholder}
       name={name}
       onChange={onChange}
@@ -15,13 +17,13 @@ export const Input: React.FC<Props> = ({
         className ?? ''
       }`}
     />
-  );
-};
+  )
+}
 
 type Props = {
-  type: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password',
   name?: string;
-  className?: string;
-  placeholder?: string;
-  onChange?: any;
+  className?: string,
+  placeholder?: string,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 };
