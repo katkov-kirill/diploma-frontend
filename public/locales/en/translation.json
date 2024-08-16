@@ -44,5 +44,25 @@
     "visibility": "WorkWave public profile visibility",
     "question": "Your Question",
     "send": "Send"
+  },
+  "report": {
+    "howHelp": "How can we help?",
+    "selectCategory": "Please select a category",
+    "buttons": {
+      "pages": "Pages",
+      "groups": "Groups",
+      "profile": "Your Profile",
+      "safety": "Log-In and Safety",
+      "messaging": "Messaging and Connections",
+      "premium": "Premium Subscriptions",
+      "other": "Other"
+    }
+  },
+  "bottomNav": {
+    "home": "Home",
+    "contactUs": "Contact Us",
+    "services": "Services",
+    "news": "News",
+    "help": "Help Center"
   }
 }
