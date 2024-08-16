@@ -32,24 +32,31 @@ const Help = () => {
   const handleQuestion = async (e: FormEvent) => {
     e.preventDefault()
     console.log(question)
-    if(question !== '') {
+    if (question !== '') {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(question)
-      };
+        body: JSON.stringify(question),
+      }
       await fetch(``, requestOptions)
         .then((res) => res.json())
-        .catch((err) => {console.error(err)})
+        .catch((err) => {
+          console.error(err)
+        })
     }
     setQuestion('')
     closeForm()
   }
-  const handleEmail = () => {}
-  const handlePassword = () => {}
-  const handlePremium = () => {}
-  const handleCloseAccount = () => {}
-  const handleVisibility = () => {}
+  const handleEmail = () => {
+  }
+  const handlePassword = () => {
+  }
+  const handlePremium = () => {
+  }
+  const handleCloseAccount = () => {
+  }
+  const handleVisibility = () => {
+  }
 
   return (
     <Box
