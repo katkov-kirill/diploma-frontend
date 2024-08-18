@@ -14,7 +14,6 @@ export const TopNavBar: React.FC<Props> = () => {
   return (
     <Box
       sx={{
-        bgcolor: '#1c1c1e',
         borderBottom: '2px solid #333',
         width: '100%',
         boxSizing: 'border-box',
