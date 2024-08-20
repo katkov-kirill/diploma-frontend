@@ -13,6 +13,37 @@
     "subtitle": "Join our community! Creating an account will allow you to access all the features of our platform. Fill in the fields below to get started.",
     "hasAccount": "Have an account?"
   },
+  "profilePage": {
+    "saveButtonText": "Save",
+    "editButtonText": "Edit",
+    "activityButtonText": "Activity",
+    "followButtonText": "Follow",
+    "editProfileButtonText": "Edit Profile",
+    "locationTitle": "Location",
+    "postsTitle": "Posts",
+    "user": {
+      "aboutUserTitle": "About me",
+      "aboutSkillsTitle": "About skills",
+      "aboutExperienceTitle": "Experience",
+      "aboutEducationTitle": "Education"
+    },
+    "company": {
+      "aboutUserTitle": "About us",
+      "projectsTitle": "Our projects"
+    }
+  },
+  "topNavBar": {
+    "homeButton": "Home",
+    "suggestionsButton": "Suggestions",
+    "messageButton": "Message"
+  },
+  "rightManagingProfilePanel": {
+    "addNewPost": "Add new post",
+    "vacancies": "Vacancies",
+    "reportProblem": "Report a problem",
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
   "general": {
     "signin": "Sign In",
     "signup": "Sign Up",

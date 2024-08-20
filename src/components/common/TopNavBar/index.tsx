@@ -8,9 +8,13 @@ import {
 } from '@mui/material';
 import { Props } from 'react-select';
 import { Logo } from '../Logo';
+import { Text } from '@components/common';
+import { useTranslation } from 'react-i18next';
 import NotificationSvg from '@assets/icons/Notification.svg';
 
 export const TopNavBar: React.FC<Props> = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -32,14 +36,44 @@ export const TopNavBar: React.FC<Props> = () => {
         </Box>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
-          <Button sx={{ color: '#fff' }} variant="text">
-            Home
+          <Button sx={{ color: '#fff',  textTransform: 'none'  }} variant="text">
+            <Text
+              variant="h2"
+              fontSize="15px"
+              align="center"
+              style={{
+                fontWeight: 600,
+                fontSize: '15pt'
+              }}
+            >
+              {t('topNavBar.homeButton')}
+            </Text>
           </Button>
-          <Button sx={{ color: '#fff' }} variant="text">
-            Suggestions
+          <Button sx={{ color: '#fff',  textTransform: 'none'  }} variant="text">
+            <Text
+              variant="h2"
+              fontSize="15px"
+              align="center"
+              style={{
+                fontWeight: 600,
+                fontSize: '15pt'
+              }}
+            >
+              {t('topNavBar.suggestionsButton')}
+            </Text>
           </Button>
-          <Button sx={{ color: '#fff' }} variant="text">
-            Message
+          <Button sx={{ color: '#fff',  textTransform: 'none'  }} variant="text">
+            <Text
+              variant="h2"
+              fontSize="15px"
+              align="center"
+              style={{
+                fontWeight: 600,
+                fontSize: '15pt'
+              }}
+            >
+              {t('topNavBar.messageButton')}
+            </Text>
           </Button>
         </Box>
 

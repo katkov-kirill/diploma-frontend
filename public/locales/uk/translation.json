@@ -13,6 +13,37 @@
     "subtitle": "Приєднуйтесь до нашої спільноти! Створення облікового запису дозволить вам отримати доступ до всіх функцій нашої платформи. Заповніть поля нижче, щоб почати.",
     "hasAccount": "Маєте обліковий запис?"
   },
+  "profilePage": {
+    "saveButtonText": "Зберегти",
+    "editButtonText": "Редагувати",
+    "activityButtonText": "Діяльність",
+    "followButtonText": "Слідкувати",
+    "editProfileButtonText": "Редагувати Профіль",
+    "locationTitle": "Розташування",
+    "postsTitle": "Пости",
+    "user": {
+      "aboutUserTitle": "Про мене",
+      "aboutSkillsTitle": "Про навички",
+      "aboutExperienceTitle": "Досвід",
+      "aboutEducationTitle": "Освіта"
+    },
+    "company": {
+      "aboutUserTitle": "Про нас",
+      "projectsTitle": "Наші проекти"
+    }
+  },
+  "topNavBar": {
+    "homeButton": "На Головну",
+    "suggestionsButton": "Пропозиції",
+    "messageButton": "Повідомлення"
+  },
+   "rightManagingProfilePanel": {
+    "addNewPost": "Додати новий пост",
+    "vacancies": "Вакансії",
+    "reportProblem": "Повідомити про проблему",
+    "settings": "Налаштування",
+    "logOut": "Вийти з аккаунту"
+  },
   "general": {
     "signin": "Увійти",
     "signup": "Зареєструватися",
