@@ -23,7 +23,7 @@ function App() {
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
           {/* <Route path="profile/:id" element={<Profile />} /> */}
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:id" element={<Profile />} />
           <Route path="*" element={<NotFoundPlaceholder />} />
         </Routes>
       </Box>

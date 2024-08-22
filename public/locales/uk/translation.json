@@ -22,12 +22,14 @@
     "locationTitle": "Розташування",
     "postsTitle": "Пости",
     "user": {
+      "role": "Працівник",
       "aboutUserTitle": "Про мене",
       "aboutSkillsTitle": "Про навички",
       "aboutExperienceTitle": "Досвід",
       "aboutEducationTitle": "Освіта"
     },
     "company": {
+      "role": "Роботодавець",
       "aboutUserTitle": "Про нас",
       "projectsTitle": "Наші проекти"
     }

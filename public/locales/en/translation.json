@@ -22,12 +22,14 @@
     "locationTitle": "Location",
     "postsTitle": "Posts",
     "user": {
+      "role": "Employee",
       "aboutUserTitle": "About me",
       "aboutSkillsTitle": "About skills",
       "aboutExperienceTitle": "Experience",
       "aboutEducationTitle": "Education"
     },
     "company": {
+      "role": "Employer",
       "aboutUserTitle": "About us",
       "projectsTitle": "Our projects"
     }

@@ -1,5 +1,6 @@
 import { ProfileResponse } from '../types/ProfileResponse';
 import { UserProfileResponse } from '../types/UserProfileResponse';
+import { CompanyProfile } from './CompanyProfile';
 import { UserProfile } from './UserProfile';
 
 type UserProfileSubcomponentProps = {
@@ -7,24 +8,27 @@ type UserProfileSubcomponentProps = {
   response: ProfileResponse;
 };
 
-function isUserProfileResponse(
-  response: ProfileResponse
-): response is UserProfileResponse {
+function isUserProfileResponse(response: ProfileResponse): response is UserProfileResponse {
   return (response as UserProfileResponse).profile?.user !== undefined;
 }
 
-// function isAdminProfileResponse(response: ProfileResponse): response is AdminProfileResponse {
-//   return (response as AdminProfileResponse).profile?.admin !== undefined;
-// }
+function isCompanyProfileResponse(response: ProfileResponse): response is UserProfileResponse {
+  return (response as UserProfileResponse).profile?.company !== undefined;
+}
 
-export const SpecificUserProfile: React.FC<UserProfileSubcomponentProps> = ({ role, response }) => {
-  if (role === 'user' && isUserProfileResponse(response)) {
+function isUserRole(response: ProfileResponse): response is UserProfileResponse {
+  return (response as UserProfileResponse).profile?.user.role !== undefined;
+}
+
+function isCompanyRole(response: ProfileResponse): response is UserProfileResponse {
+  return (response as UserProfileResponse).profile?.company.role !== undefined;
+}
+
+export const SpecificUserProfile: React.FC<UserProfileSubcomponentProps> = ({ response }) => {
+  if (isUserProfileResponse(response) && isUserRole(response)) {
     return <UserProfile profileResponse={response} />;
   }
-  // else if (role === 'admin' && isAdminProfileResponse(response)) {
-  //   return <AdminProfileDetails profileResponse={response} />;
-  // }
-  else {
-    return <div>Role not supported or response structure invalid</div>;
+  else if (isCompanyProfileResponse(response) && isCompanyRole(response)) {
+    return <CompanyProfile profileResponse={response} />;
   }
 };

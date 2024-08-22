@@ -22,6 +22,7 @@ export const TopNavBar: React.FC<Props> = () => {
         width: '100%',
         boxSizing: 'border-box',
         padding: '20px 20px',
+        backgroundColor: '#16191e'
       }}
     >
       <Box
