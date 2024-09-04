@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:80/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://165.22.84.32/api' }),
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (formData) => ({
