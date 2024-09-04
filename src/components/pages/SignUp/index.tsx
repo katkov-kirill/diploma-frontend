@@ -18,7 +18,7 @@ export const SignUp = () => {
     role: '',
   });
   const { t } = useTranslation();
-  const [register, result] = useRegisterMutation();
+  const [register] = useRegisterMutation();
   const navigate = useNavigate();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -117,6 +117,7 @@ export const SignUp = () => {
                   { label: 'Company', value: 'company' },
                 ]}
                 label="I am a..."
+                //@ts-ignore
                 onChange={handleChangeRole}
                 isClearable
                 placeholder="I am a..."

@@ -5,11 +5,11 @@ import { Dropdown } from '@components/common/Dropdown';
 import { GoogleButton } from '@components/common/GoogleButton';
 import React from 'react';
 import SignInBg from '@assets/signin-bg.png';
+import { loginSuccess } from 'src/store/userSlice';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from 'src/services/userApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from 'src/store/userSlice';
 
 export const SignIn = () => {
   const { t } = useTranslation();
@@ -138,6 +138,7 @@ export const SignIn = () => {
                   { label: 'Company', value: 'company' },
                 ]}
                 label="I am a..."
+                //@ts-ignore
                 onChange={handleChangeRole}
                 isClearable
                 placeholder="I am a..."
