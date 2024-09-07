@@ -16,6 +16,8 @@
   "profilePage": {
     "saveButtonText": "Save",
     "editButtonText": "Edit",
+    "hideButtonText": "Hide",
+    "showButtonText": "Show",
     "activityButtonText": "Activity",
     "followButtonText": "Follow",
     "editProfileButtonText": "Edit Profile",
@@ -32,12 +34,20 @@
       "role": "Employer",
       "aboutUserTitle": "About us",
       "projectsTitle": "Our projects"
+    },
+    "editPopup": {
+      "oldPhoto": "Old photo",
+      "currentPhoto": "Current photo",
+      "newPhoto": "New photo",
+      "editProfile": "Edit profile"
     }
   },
   "topNavBar": {
     "homeButton": "Home",
     "suggestionsButton": "Suggestions",
-    "messageButton": "Message"
+    "messageButton": "Message",
+    "applicationsButton": "Applications",
+    "notificationsButton": "Notifications"
   },
   "rightManagingProfilePanel": {
     "addNewPost": "Add new post",

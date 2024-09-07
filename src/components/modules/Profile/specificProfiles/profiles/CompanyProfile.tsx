@@ -1,28 +1,33 @@
 import { Box } from '@mui/material';
-import { UserProfileResponse } from '../types/UserProfileResponse';
-import { UserProfileCard } from './UserProfileCard';
-import { ProfileCard } from '../types/ProfileCard';
-import { Section } from './Section';
+import { UserProfileResponse } from 'src/types';
+import { UserProfileCard } from '../../content';
+import { ProfileCard } from 'src/types';
+import { Section } from '../../content';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
-export const UserProfile = ({
+export const CompanyProfile = ({
   profileResponse,
+  isOwner,
 }: {
   profileResponse: UserProfileResponse;
+  isOwner: boolean;
 }) => {
   const { t } = useTranslation();
 
   const profileData: ProfileCard = {
-    name:
-      profileResponse.profile.user.first_name +
-      ' ' +
-      profileResponse.profile.user.last_name,
-    role: 'Employee',
-    shortDescription: profileResponse.profile.user.position,
-    location: profileResponse.profile.user.location,
+    name: profileResponse.profile.company.name,
+    role: 'Employer',
+    shortDescription: profileResponse.profile.company.description,
+    location: profileResponse.profile.company.location,
     skills: [],
     isOwner: true,
   };
+
+  useEffect(() => {
+    console.log("Company profile profile data: ");
+    console.log(profileData);
+  }, []);
 
   return (
     <Box
@@ -30,16 +35,19 @@ export const UserProfile = ({
         padding: 2,
         borderRadius: 2,
         gridTemplateRows: '1fr auto auto auto auto auto auto',
-        backgroundColor: '#16191e'
+        backgroundColor: '#16191e',
       }}
     >
-      <UserProfileCard profileCardData={profileData} />
+      <UserProfileCard profileCardData={profileData} editMode={false} />
 
-      {/* about me + full skills */}
+      {/* about us */}
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: '3fr 1fr',
+          gridTemplateColumns: {
+            xs: '1fr',
+            md: '3fr 1fr',
+          },
           gap: 2,
           alignItems: 'center',
           marginTop: 2,
@@ -55,9 +63,12 @@ export const UserProfile = ({
         >
           <Section
             sectionData={{
-              title: t('profilePage.user.aboutUserTitle'),
-              content: profileResponse.profile.user.about_info,
+              title: t('profilePage.company.aboutUserTitle'),
+              content: profileResponse.profile.company.about_us,
+              isOwner: profileData.isOwner,
+              skills: null,
             }}
+            isSkillsSection={false}
           />
         </Box>
 
@@ -67,6 +78,10 @@ export const UserProfile = ({
             borderRadius: '20px',
             padding: 2,
             height: '100%',
+            display: {
+              xs: 'none',
+              md: 'flex',
+            },
           }}
         >
           {/* <Typography variant="h6" sx={{ color: '#fff' }}>
@@ -75,7 +90,7 @@ export const UserProfile = ({
         </Box>
       </Box>
 
-      {/* about skills */}
+      {/* our projects */}
       <Box
         sx={{
           backgroundColor: '#28282C',
@@ -86,31 +101,16 @@ export const UserProfile = ({
       >
         <Section
           sectionData={{
-            title: t('profilePage.user.aboutSkillsTitle'),
-            content: profileResponse.profile.user.skills_desc,
+            title: t('profilePage.company.projectsTitle'),
+            content: profileResponse.profile.company.description,
+            isOwner: profileData.isOwner,
+            skills: null,
           }}
-        />
-        
-      </Box>
-
-      {/* experience */}
-      <Box
-        sx={{
-          backgroundColor: '#28282C',
-          borderRadius: '20px',
-          marginTop: 2,
-          padding: 2,
-        }}
-      >
-        <Section
-          sectionData={{
-            title: t('profilePage.user.aboutExperienceTitle'),
-            content: profileResponse.profile.user.experience,
-          }}
+          isSkillsSection={false}
         />
       </Box>
 
-      {/* education */}
+      {/* posts */}
       <Box
         sx={{
           backgroundColor: '#28282C',
@@ -121,9 +121,12 @@ export const UserProfile = ({
       >
         <Section
           sectionData={{
-            title: t('profilePage.user.aboutEducationTitle'),
-            content: profileResponse.profile.user.education,
+            title: t('profilePage.postsTitle'),
+            content: profileResponse.profile.company.contact_phone,
+            isOwner: profileData.isOwner,
+            skills: null,
           }}
+          isSkillsSection={false}
         />
       </Box>
     </Box>

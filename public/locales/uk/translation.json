@@ -16,6 +16,8 @@
   "profilePage": {
     "saveButtonText": "Зберегти",
     "editButtonText": "Редагувати",
+    "hideButtonText": "Сховати",
+    "showButtonText": "Дивитись",
     "activityButtonText": "Діяльність",
     "followButtonText": "Слідкувати",
     "editProfileButtonText": "Редагувати Профіль",
@@ -32,14 +34,22 @@
       "role": "Роботодавець",
       "aboutUserTitle": "Про нас",
       "projectsTitle": "Наші проекти"
+    },
+    "editPopup": {
+      "oldPhoto": "Старе фото",
+      "currentPhoto": "Поточне фото",
+      "newPhoto": "Нове фото",
+      "editProfile": "Редагувати профіль"
     }
   },
   "topNavBar": {
     "homeButton": "На Головну",
     "suggestionsButton": "Пропозиції",
-    "messageButton": "Повідомлення"
+    "messageButton": "Повідомлення",
+    "applicationsButton": "Заявки",
+    "notificationsButton": "Сповіщення"
   },
-   "rightManagingProfilePanel": {
+  "rightManagingProfilePanel": {
     "addNewPost": "Додати новий пост",
     "vacancies": "Вакансії",
     "reportProblem": "Повідомити про проблему",

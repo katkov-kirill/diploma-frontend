@@ -1,7 +1,9 @@
+import { Skill } from "./Skill";
+
 export type UserProfileResponse = {
     profile: {
         user: {
-            role: 'user',
+            role: 'Employee',
             first_name: string;
             last_name: string;
             position: string;
@@ -10,9 +12,10 @@ export type UserProfileResponse = {
             skills_desc: string;
             experience: string;
             education: string;
+            skills: Array<Skill> | null;
         };
         company: {
-            role: 'company',
+            role: 'Employer',
             about_us: string;
             contact_email: string;
             contact_phone: string;

@@ -4,6 +4,8 @@ export const Input: React.FC<Props> = ({
   placeholder,
   name,
   onChange,
+  style,
+  defaultValue
 }) => {
   return (
     <input
@@ -14,6 +16,8 @@ export const Input: React.FC<Props> = ({
       className={`focus:outline-none border-2 color-[#fff] border-[#fff] text-[20px] focus:ring-4 w-full h-[64px] bg-transparent p-[20px] focus:ring-[#5D6AD1] rounded-[15px] ${
         className ?? ''
       }`}
+      style={style} 
+      defaultValue = {defaultValue}
     />
   );
 };
@@ -24,4 +28,6 @@ type Props = {
   className?: string;
   placeholder?: string;
   onChange?: any;
+  style?: React.CSSProperties; 
+  defaultValue?: string;
 };
