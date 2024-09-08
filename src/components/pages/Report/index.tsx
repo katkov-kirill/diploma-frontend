@@ -148,7 +148,10 @@ export const Report = () => {
         >
           <Box
             sx={{
-              width: 500,
+              width: {
+                xs: 3/4,
+                md: 1/2
+              },
               position: 'absolute',
               top: '50%',
               left: '50%',
