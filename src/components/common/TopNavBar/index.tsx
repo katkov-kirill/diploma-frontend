@@ -19,6 +19,7 @@ import { ProfileResponse } from 'src/types';
 
 export const TopNavBar: React.FC<Props> = () => {
   const { t } = useTranslation();
+  
   localStorage.setItem('user', 'user-1');
 
   const { id } = useParams<{ id: string }>();

@@ -46,8 +46,18 @@ export const EditPhotoPopup: React.FC<PhotoPopupProps> = ({
         '& .MuiDialog-paper': {
           backgroundColor: '#16191E', // Background color of the dialog window
           color: '#F7F7F7', // Text color inside the dialog
-          width: '995px',
-          maxWidth: '995px',
+          width: {
+            xs: '100%',
+            md: '995px'
+          },
+          maxWidth: {
+            xs: '100%',
+            md: '995px'
+          },
+          height: {
+            xs: '100%',
+            md: '399px'
+          },
           padding: '20px',
           borderRadius: '20px'
         },

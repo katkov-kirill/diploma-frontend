@@ -3,21 +3,39 @@ import { ProfileCard } from 'src/types';
 import { Button, Text } from '@components/common';
 import { useTranslation } from 'react-i18next';
 import { EditPhotoPopup } from '../../popups';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EditProfilePopup } from '../../popups';
 
 export const UserProfileCard = ({
   profileCardData,
   editMode,
+  showSkills,
 }: {
   profileCardData: ProfileCard;
   editMode: boolean;
+  size: string | null;
+  showSkills: boolean;
 }) => {
   const { t } = useTranslation();
+
   const [isPopupOpen, setPopupOpen] = useState({
     editPhoto: false,
     editProfile: false,
   });
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Function to handle opening a specific popup
   const handleOpenPopup = (popupName: string) => {
@@ -49,9 +67,13 @@ export const UserProfileCard = ({
           backgroundColor: '#28282C',
           padding: 2,
           borderRadius: '20px', // bgImage here
-        }}
-        style={{
-          height: '108px',
+          height: {
+            xs: !editMode ? '108px' : 'auto',
+            md: '213px',
+          },
+          width: {
+            xs: !editMode ? '100%' : `${windowWidth - 110}px`,
+          },
         }}
       >
         <Box
@@ -68,11 +90,11 @@ export const UserProfileCard = ({
             <Avatar
               sx={{
                 width: {
-                  xs: 50,
+                  xs: !editMode ? 50 : '20vw',
                   md: 120,
                 },
                 height: {
-                  xs: 50,
+                  xs: !editMode ? 50 : '20vw',
                   md: 120,
                 },
                 cursor: 'pointer',
@@ -91,19 +113,28 @@ export const UserProfileCard = ({
               <Text
                 variant="h6"
                 fontSize={{
-                  xs: '14px',
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.96}pt`
+                    : '14px',
                   md: '20px',
                 }}
                 color="#F7F7F7"
                 fontWeight={500}
-                lineHeight="10px"
+                lineHeight={{
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.99 + 22}px`
+                    : '10px',
+                  md: '10px',
+                }}
               >
                 {profileCardData.name}
               </Text>
               <Text
                 variant="subtitle1"
                 fontSize={{
-                  xs: '12px',
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.98}pt`
+                    : '12px',
                   md: '15px',
                 }}
                 color="#F7F7F7"
@@ -114,11 +145,19 @@ export const UserProfileCard = ({
               <Text
                 variant="subtitle1"
                 fontSize={{
-                  xs: '14px',
-                  md: '15px',
+                  // TODO: set onChange -> smaller text - bigger font size
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.98 + 1.5}px`
+                    : '16px',
+                  md: '18px'
                 }}
                 color="#F7F7F7"
-                lineHeight="10px"
+                 lineHeight={{
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.99 + 22}px`
+                    : '10px',
+                  md: '10px',
+                }}
                 fontWeight={300}
               >
                 {profileCardData.shortDescription}
@@ -126,7 +165,10 @@ export const UserProfileCard = ({
               <Text
                 variant="subtitle1"
                 fontSize={{
-                  xs: '14px',
+                  // TODO: set onChange -> smaller text - bigger font size
+                  xs: editMode
+                    ? `${windowWidth - windowWidth * 0.98}pt`
+                    : '14px',
                   md: '15px',
                 }}
                 color="#F7F7F7"
@@ -271,7 +313,103 @@ export const UserProfileCard = ({
           </Box>
         </Box>
       </Box>
-     
+      {!editMode ? (
+        profileCardData.isOwner ? (
+          <Box
+            sx={{
+              display: {
+                xs: 'grid',
+                md: 'none',
+              },
+              gridTemplateColumns: '1fr 1fr',
+              gap: 1,
+              alignItems: 'center',
+              marginTop: 2,
+            }}
+          >
+            <Button
+              $variant="outlined"
+              sx={{
+                width: '100%',
+                height: '35px',
+              }}
+              style={{
+                backgroundColor: 'white',
+                marginRight: '10px',
+                fontSize: '14px',
+              }}
+              onClick={() => handleOpenPopup('editProfile')}
+            >
+              <Text
+                variant="subtitle1"
+                fontSize="15px"
+                fontWeight={400}
+                lineHeight="20px"
+              >
+                {t('profilePage.editButtonText')}
+              </Text>
+            </Button>
+
+            <Button
+              $variant="primary"
+              sx={{
+                width: '100%',
+                height: '35px',
+              }}
+              style={{
+                marginLeft: '10px',
+                fontSize: '14px',
+              }}
+            >
+              <Text
+                variant="subtitle1"
+                fontSize="15px"
+                fontWeight={400}
+                lineHeight="20px"
+              >
+                {t('profilePage.activityButtonText')}
+              </Text>
+            </Button>
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              display: {
+                xs: 'grid',
+                md: 'none',
+              },
+              gridTemplateColumns: '1fr',
+              gap: 1,
+              alignItems: 'center',
+              marginTop: 2,
+            }}
+          >
+            <Button
+              $variant="primary"
+              sx={{
+                width: '100%',
+                height: '35px',
+              }}
+              style={{
+                marginLeft: '10px',
+                fontSize: '14px',
+                lineHeight: '10px',
+              }}
+            >
+              <Text
+                variant="subtitle1"
+                fontSize="15px"
+                fontWeight={400}
+                lineHeight="20px"
+              >
+                {t('profilePage.followButtonText')}
+              </Text>
+            </Button>
+          </Box>
+        )
+      ) : (
+        <></>
+      )}
     </>
   );
 };

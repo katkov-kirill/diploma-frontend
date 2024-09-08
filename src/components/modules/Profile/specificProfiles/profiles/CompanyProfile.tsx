@@ -20,6 +20,7 @@ export const CompanyProfile = ({
     role: 'Employer',
     shortDescription: profileResponse.profile.company.description,
     location: profileResponse.profile.company.location,
+    // aboutUs: , TODO stopped here yesterday
     skills: [],
     isOwner: true,
   };
@@ -27,6 +28,9 @@ export const CompanyProfile = ({
   useEffect(() => {
     console.log("Company profile profile data: ");
     console.log(profileData);
+
+    console.log("Company profile profile response: ");
+    console.log(profileResponse);
   }, []);
 
   return (
@@ -64,7 +68,7 @@ export const CompanyProfile = ({
           <Section
             sectionData={{
               title: t('profilePage.company.aboutUserTitle'),
-              content: profileResponse.profile.company.about_us,
+              content: profileResponse.profile.company.about_info,
               isOwner: profileData.isOwner,
               skills: null,
             }}
@@ -122,6 +126,7 @@ export const CompanyProfile = ({
         <Section
           sectionData={{
             title: t('profilePage.postsTitle'),
+            // TODO: set posts here
             content: profileResponse.profile.company.contact_phone,
             isOwner: profileData.isOwner,
             skills: null,

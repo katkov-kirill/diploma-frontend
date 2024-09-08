@@ -16,7 +16,7 @@ export type UserProfileResponse = {
         };
         company: {
             role: 'Employer',
-            about_us: string;
+            about_info: string;
             contact_email: string;
             contact_phone: string;
             contact_url: string;
