@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import BGImage from '@assets/help_bgimage.jpeg'
 import LogoImage from '@assets/workwave_logo.png'
+import STE from '@assets/sendtoemail.svg'
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -122,12 +123,13 @@ const Help = () => {
           marginBottom="auto"
         >
           <IconButton onClick={handleSupportForm}>
-            <SvgIcon width="16px" height="16px">
-              <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M27.3332 2.99967C27.3332 1.53301 26.1332 0.333008 24.6665 0.333008H3.33317C1.8665 0.333008 0.666504 1.53301 0.666504 2.99967V18.9997C0.666504 20.4663 1.8665 21.6663 3.33317 21.6663H24.6665C26.1332 21.6663 27.3332 20.4663 27.3332 18.9997V2.99967ZM24.6665 2.99967L13.9998 9.66634L3.33317 2.99967H24.6665ZM24.6665 18.9997H3.33317V5.66634L13.9998 12.333L24.6665 5.66634V18.9997Z"
-                  fill="#F7F7F7" />
-              </svg>
+            <SvgIcon viewBox={'0 0 28 22'} >
+              <STE  />
+              {/*<svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
+              {/*  <path*/}
+              {/*    d="M27.3332 2.99967C27.3332 1.53301 26.1332 0.333008 24.6665 0.333008H3.33317C1.8665 0.333008 0.666504 1.53301 0.666504 2.99967V18.9997C0.666504 20.4663 1.8665 21.6663 3.33317 21.6663H24.6665C26.1332 21.6663 27.3332 20.4663 27.3332 18.9997V2.99967ZM24.6665 2.99967L13.9998 9.66634L3.33317 2.99967H24.6665ZM24.6665 18.9997H3.33317V5.66634L13.9998 12.333L24.6665 5.66634V18.9997Z"*/}
+              {/*    fill="#F7F7F7" />*/}
+              {/*</svg>*/}
             </SvgIcon>
           </IconButton>
           <Link
