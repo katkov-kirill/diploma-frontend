@@ -41,8 +41,6 @@ export const SignIn = () => {
 
       const { token, user } = response.data;
 
-      // console.log('Token:', token);
-
       if (token && user) {
         dispatch(
           loginSuccess({
@@ -50,12 +48,6 @@ export const SignIn = () => {
             user,
           })
         );
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-
-        // console.log('Token stored:', localStorage.getItem('token'));
-        // console.log('User stored:', localStorage.getItem('user'));
 
         navigate('/dashboard');
       } else {
