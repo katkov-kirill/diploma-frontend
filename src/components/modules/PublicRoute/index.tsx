@@ -10,7 +10,7 @@ export const PublicRoute: React.FC<Props> = ({
   isAuthenticated,
   component,
 }) => {
-  if (isAuthenticated) return <Navigate to="/on-boarding" />;
+  if (isAuthenticated) return <Navigate to="/home" />;
 
   return component;
 };

@@ -15,7 +15,9 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
+import { Home } from '@components/pages/Home';
 import { LanguageBar } from '@components/modules';
+import { Loader } from '@components/common/Loader';
 import { PrivateRoute } from '@components/modules/PrivateRoute';
 import { PublicRoute } from '@components/modules/PublicRoute';
 import React from 'react';
@@ -35,17 +37,7 @@ function App() {
     }
   }, [userData]);
 
-  if (isLoading)
-    return (
-      <Stack
-        width="100%"
-        height="100%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <CircularProgress />
-      </Stack>
-    );
+  if (isLoading) return <Loader />;
 
   return (
     <Stack>
@@ -75,6 +67,15 @@ function App() {
             element={
               <PublicRoute
                 component={<SignUp />}
+                isAuthenticated={user.isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="home"
+            element={
+              <PrivateRoute
+                component={<Home />}
                 isAuthenticated={user.isAuthenticated}
               />
             }

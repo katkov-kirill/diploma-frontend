@@ -1,12 +1,29 @@
-import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
+
 import AddNewPostSvg from '@assets/icons/AddNewPost.svg';
-import VacanciesSvg from '@assets/icons/Vacancies.svg';
+import { AddPostModal } from '@components/modules/AddPostModal';
+import LogOutSvg from '@assets/icons/LogOut.svg';
+import React from 'react';
 import ReportProblemSvg from '@assets/icons/ReportProblem.svg';
 import SettingsSvg from '@assets/icons/Settings.svg';
-import LogOutSvg from '@assets/icons/LogOut.svg';
+import { Text } from '../Text';
+import VacanciesSvg from '@assets/icons/Vacancies.svg';
 
-export const ContentLayout: React.FC = () => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const ContentLayout: React.FC<Props> = ({ children }) => {
+  const [isPostModalOpen, setIsPostModalOpen] = React.useState(false);
+
+  const handleClosePostModal = () => {
+    setIsPostModalOpen(false);
+  };
+
+  const handleOpenPostModal = () => {
+    setIsPostModalOpen(true);
+  };
+
   return (
     <Box
       sx={{
@@ -15,18 +32,20 @@ export const ContentLayout: React.FC = () => {
         gap: 2,
         padding: 2,
         height: '100vh',
+        maxWidth: '1280px',
+        margin: '0 auto',
       }}
     >
       <Box sx={{ bgcolor: '#2c2c2e', padding: 2, borderRadius: 2 }}>
-        <Typography variant="h6" sx={{ color: '#fff' }}>
+        <Text variant="h6" sx={{ color: '#fff' }}>
           Left Panel
-        </Typography>
+        </Text>
       </Box>
 
       <Box sx={{ bgcolor: '#1c1c1e', padding: 2, borderRadius: 2 }}>
-        <Typography variant="h6" sx={{ color: '#fff' }}>
-          Main Content
-        </Typography>
+        <Text variant="h6" sx={{ color: '#fff' }}>
+          {children}
+        </Text>
       </Box>
 
       <Box sx={{ bgcolor: '#2c2c2e', padding: 2, borderRadius: 2 }}>
@@ -43,6 +62,7 @@ export const ContentLayout: React.FC = () => {
             textTransform: 'none',
             width: '100%',
           }}
+          onClick={handleOpenPostModal}
         >
           <img
             src={AddNewPostSvg}
@@ -131,6 +151,10 @@ export const ContentLayout: React.FC = () => {
           <p> Log out</p>
         </Button>
       </Box>
+      <AddPostModal
+        isOpen={isPostModalOpen}
+        handleClose={handleClosePostModal}
+      />
     </Box>
   );
 };
