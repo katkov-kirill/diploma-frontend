@@ -98,11 +98,8 @@ export const AddPostModal: React.FC<Props> = ({ isOpen, handleClose }) => {
       formData.append('visibility', formInputs.visibility);
 
       if (formInputs.fileContent) {
-        formData.append('images', [formInputs.fileContent]);
+        formData.append('images', formInputs.fileContent);
       }
-
-      console.log('formData title', formData.get('title'));
-      console.log('formDaTA images: ', formData.get('images'));
 
       await createPost(formData);
     } catch (error) {

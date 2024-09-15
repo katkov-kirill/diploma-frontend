@@ -11,9 +11,7 @@ export const getBaseQuery = (hasFileInput?: boolean) => {
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
-      if (hasFileInput) {
-        headers.set('Content-Type', 'multipart/form-data');
-      }
+      headers.set('Accept', `application/json`);
       return headers;
     },
   });

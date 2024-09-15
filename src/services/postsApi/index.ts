@@ -18,9 +18,7 @@ export const postsApi = createApi({
       query: (formData) => ({
         url: 'posts',
         method: 'POST',
-        body: {
-          ...formData,
-        },
+        body: formData,
       }),
     }),
   }),
