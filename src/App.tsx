@@ -5,6 +5,7 @@ import {
   Help,
   NotFoundPlaceholder,
   OnBoarding,
+  Profile,
   Report,
   SignIn,
   SignUp,
@@ -97,6 +98,8 @@ function App() {
               />
             }
           />
+          {/* <Route path="profile/:id" element={<Profile />} /> */}
+          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFoundPlaceholder />} />
         </Routes>
       </Box>
