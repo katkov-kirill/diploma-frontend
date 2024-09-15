@@ -1,15 +1,17 @@
-import Box from '@mui/material/Box'
-import BGImage from '@assets/onboarding_bgimage.jpeg'
-import LogoImage from '@assets/workwave_logo.png'
-import { BottomNavigation, BottomNavigationAction, Stack } from '@mui/material'
-import { Text } from '@components/common'
-import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { BottomNavigation, BottomNavigationAction, Stack } from '@mui/material';
+
+import BGImage from '@assets/onboarding_bgimage.jpeg';
+import Box from '@mui/material/Box';
+import LogoImage from '@assets/workwave_logo.png';
+import { Text } from '@components/common';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const OnBoarding = () => {
-
-  const { t } = useTranslation('translation')
-  const [value, setValue] = useState(0)
+  const { t } = useTranslation('translation');
+  const [value, setValue] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -17,6 +19,7 @@ export const OnBoarding = () => {
       minHeight="calc(100vh - 24px)"
       display="flex"
       flexDirection="column"
+      jk
       justifyContent={{
         xs: 'end',
         md: 'space-between',
@@ -40,7 +43,11 @@ export const OnBoarding = () => {
           backgroundColor: 'bg.main',
         }}
       >
-        <img src={LogoImage} alt="WorkWave" style={{ objectFit: 'contain', height: '80%' }} />
+        <img
+          src={LogoImage}
+          alt="WorkWave"
+          style={{ objectFit: 'contain', height: '80%' }}
+        />
       </Stack>
       <Stack
         maxWidth={{ xs: '100%', md: '560px' }}
@@ -62,7 +69,11 @@ export const OnBoarding = () => {
           },
         }}
       >
-        <img src={LogoImage} alt="WorkWave" style={{ objectFit: 'contain', width: '50%' }} />
+        <img
+          src={LogoImage}
+          alt="WorkWave"
+          style={{ objectFit: 'contain', width: '50%' }}
+        />
         <Text fontSize="32px" fontWeight={600} mb="10px">
           {t('onboarding.about.title')}
         </Text>
@@ -81,14 +92,13 @@ export const OnBoarding = () => {
         <Text fontSize="12px" maxWidth="560px" align="center" mb="30px">
           {t('onboarding.weDo.subtitle')}
         </Text>
-
       </Stack>
       <BottomNavigation
         component="footer"
         showLabels
         value={value}
         onChange={(_event, newValue) => {
-          setValue(newValue)
+          setValue(newValue);
         }}
         sx={{
           '& .MuiBottomNavigationAction-root': {
@@ -102,12 +112,15 @@ export const OnBoarding = () => {
           justifySelf: 'end',
         }}
       >
-        <BottomNavigationAction label={t('bottomNav.home')} />
+        <BottomNavigationAction
+          label={t('bottomNav.home')}
+          onClick={() => navigate('/home')}
+        />
         <BottomNavigationAction label={t('bottomNav.contactUs')} />
         <BottomNavigationAction label={t('bottomNav.services')} />
         <BottomNavigationAction label={t('bottomNav.news')} />
         <BottomNavigationAction label={t('bottomNav.help')} />
       </BottomNavigation>
     </Box>
-  )
-}
+  );
+};

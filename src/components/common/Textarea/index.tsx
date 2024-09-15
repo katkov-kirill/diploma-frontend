@@ -1,17 +1,13 @@
 import React from 'react';
 
-export const Input: React.FC<Props> = ({
-  type,
+export const Textarea: React.FC<Props> = ({
   className,
   placeholder,
   name,
   onChange,
-  id,
 }) => {
   return (
-    <input
-      id={id}
-      type={type}
+    <textarea
       placeholder={placeholder}
       name={name}
       onChange={onChange}
@@ -23,10 +19,8 @@ export const Input: React.FC<Props> = ({
 };
 
 type Props = {
-  id?: string;
-  type: 'text' | 'email' | 'password' | 'file';
   name?: string;
   className?: string;
   placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
