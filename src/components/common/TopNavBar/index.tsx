@@ -1,16 +1,14 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { Props } from 'react-select';
+import { Avatar, Box, Button, IconButton, Stack } from '@mui/material';
+
 import { Logo } from '../Logo';
 import NotificationSvg from '@assets/icons/Notification.svg';
+import { Props } from 'react-select';
+import { Text } from '../Text';
+import { useNavigate } from 'react-router-dom';
 
 export const TopNavBar: React.FC<Props> = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -33,7 +31,11 @@ export const TopNavBar: React.FC<Props> = () => {
         </Box>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
-          <Button sx={{ color: '#fff' }} variant="text">
+          <Button
+            sx={{ color: '#fff' }}
+            variant="text"
+            onClick={() => navigate('/home')}
+          >
             Home
           </Button>
           <Button sx={{ color: '#fff' }} variant="text">
@@ -47,12 +49,9 @@ export const TopNavBar: React.FC<Props> = () => {
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Stack direction="row" alignItems="center" gap={2}>
             <Stack spacing={0.5} alignItems="center">
-              <Typography
-                variant="body1"
-                sx={{ color: '#fff', fontWeight: 600 }}
-              >
+              <Text variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
                 user_name
-              </Typography>
+              </Text>
 
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <IconButton

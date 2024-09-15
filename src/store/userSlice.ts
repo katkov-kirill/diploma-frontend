@@ -3,7 +3,15 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 interface UserState {
   isAuthenticated: boolean;
   token: string | null;
-  user: any;
+  user: {
+    avatar_url: string | null;
+    created_at: string;
+    email: string;
+    id: string;
+    role_id: string;
+    updated_at: string;
+    user_profile_id: string;
+  } | null;
 }
 
 const initialState: UserState = {
