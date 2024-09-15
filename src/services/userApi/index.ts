@@ -1,8 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { RootState } from 'src/store/store';
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'http://165.22.84.32/api',
+  //@ts-ignore
+  prepareHeaders: (headers, { getState }: { getState: () => RootState }) => {
+    const token = getState().user.token || localStorage.getItem('authToken');
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:80/api' }),
+  baseQuery,
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (formData) => ({
@@ -22,7 +36,14 @@ export const userApi = createApi({
         },
       }),
     }),
+    getCurrentUser: builder.query<{ user: any }, void>({
+      query: () => ({
+        url: 'user',
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = userApi;
+export const { useRegisterMutation, useLoginMutation, useGetCurrentUserQuery } =
+  userApi;

@@ -5,11 +5,11 @@ import { Dropdown } from '@components/common/Dropdown';
 import { GoogleButton } from '@components/common/GoogleButton';
 import React from 'react';
 import SignInBg from '@assets/signin-bg.png';
+import { loginSuccess } from 'src/store/userSlice';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from 'src/services/userApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from 'src/store/userSlice';
 
 export const SignIn = () => {
   const { t } = useTranslation();
@@ -41,8 +41,6 @@ export const SignIn = () => {
 
       const { token, user } = response.data;
 
-      // console.log('Token:', token);
-
       if (token && user) {
         dispatch(
           loginSuccess({
@@ -50,12 +48,6 @@ export const SignIn = () => {
             user,
           })
         );
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-
-        // console.log('Token stored:', localStorage.getItem('token'));
-        // console.log('User stored:', localStorage.getItem('user'));
 
         navigate('/dashboard');
       } else {
@@ -138,6 +130,7 @@ export const SignIn = () => {
                   { label: 'Company', value: 'company' },
                 ]}
                 label="I am a..."
+                //@ts-ignore
                 onChange={handleChangeRole}
                 isClearable
                 placeholder="I am a..."
