@@ -1,6 +1,5 @@
 import './App.css';
 
-import { CircularProgress, Stack } from '@mui/material';
 import {
   Help,
   NotFoundPlaceholder,
@@ -22,6 +21,7 @@ import { PrivateRoute } from '@components/modules/PrivateRoute';
 import { PublicRoute } from '@components/modules/PublicRoute';
 import React from 'react';
 import { RootState } from './store/store';
+import { Stack } from '@mui/material';
 import { loginSuccess } from './store/userSlice';
 import { useGetCurrentUserQuery } from './services/userApi';
 

@@ -11,7 +11,12 @@ export type Post = {
   images: string[];
   status: string;
   title: string;
-  user_id: string;
+  user: {
+    first_name: string;
+    id: string;
+    last_name: string;
+    role: string;
+  };
   visibility: string;
 };
 
@@ -22,18 +27,19 @@ export const Post: React.FC<Post> = ({
   images,
   status,
   title,
-  user_id,
+  user,
   visibility,
 }) => {
   return (
     <Stack sx={{ bgcolor: '#28282C' }} borderRadius="15px" overflow="hidden">
-      <img src={Placeholder} />
+      <img src={Object.values(images)?.[0] ?? Placeholder} />
       <Stack p="20px">
         <Stack direction="row" justifyContent="space-between">
-          <Text variant="h5" fontWeight={700}>
+          <Text variant="h5" fontWeight={700} maxWidth="80%">
             {title}
           </Text>
           <Text>
+            {user.first_name},&nbsp;
             {formatDistance(new Date(created_at), new Date(), {
               addSuffix: true,
             })}

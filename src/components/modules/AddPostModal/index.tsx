@@ -18,7 +18,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: '100%',
   maxWidth: '995px',
-
   bgcolor: '#16191E',
   borderRadius: '15px',
   boxShadow: 24,
@@ -35,34 +34,11 @@ export const AddPostModal: React.FC<Props> = ({ isOpen, handleClose }) => {
     fileContent: null,
   });
 
-  console.log('formInputs: ', formInputs);
-
   const handleChange: React.ChangeEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   > = (e) => {
     setFormInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  // const onLoad = (fileString: string | ArrayBuffer | null) => {
-  //   console.log(fileString);
-  //   setFormInputs((prev) => ({ ...prev, fileContent: fileString as string }));
-  // };
-
-  // const getBase64 = (file: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => {
-  //     onLoad(reader.result);
-  //   };
-  // };
-
-  // const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   if (files && files[0]) {
-  //     const file = files[0];
-  //     getBase64(file);
-  //   }
-  // };
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
@@ -73,27 +49,12 @@ export const AddPostModal: React.FC<Props> = ({ isOpen, handleClose }) => {
     setFormInputs((prev) => ({ ...prev, visibility: option?.value ?? '' }));
   };
 
-  // const handlePublish = async () => {
-  //   try {
-  //     await createPost({
-  //       title: formInputs.title,
-  //       content: formInputs.textContent,
-  //       user_id: userData?.user?.id,
-  //       images: formInputs.fileContent,
-  //       status: 'published',
-  //       visibility: formInputs.visibility,
-  //     });
-  //   } catch (error) {
-  //     console.error('Post creation failed:', error);
-  //   }
-  // };
-
   const handlePublish = async () => {
     try {
       const formData = new FormData();
       formData.append('title', formInputs.title);
       formData.append('content', formInputs.textContent);
-      formData.append('user_id', userData?.user?.id);
+      formData.append('user_id', userData?.user?.id as string);
       formData.append('status', 'published');
       formData.append('visibility', formInputs.visibility);
 
@@ -104,6 +65,10 @@ export const AddPostModal: React.FC<Props> = ({ isOpen, handleClose }) => {
       await createPost(formData);
     } catch (error) {
       console.error('Post creation failed:', error);
+    } finally {
+      if (handleClose) {
+        handleClose();
+      }
     }
   };
 
@@ -148,7 +113,7 @@ export const AddPostModal: React.FC<Props> = ({ isOpen, handleClose }) => {
           />
           <Textarea
             name="textContent"
-            className="h-[200px]"
+            className="h-[230px]"
             placeholder="Post contents"
             onChange={handleChange}
           />
