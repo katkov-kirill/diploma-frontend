@@ -5,9 +5,11 @@ import NotificationSvg from '@assets/icons/Notification.svg';
 import { Props } from 'react-select';
 import { Text } from '../Text';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const TopNavBar: React.FC<Props> = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('translation');
 
   return (
     <Box
@@ -36,13 +38,13 @@ export const TopNavBar: React.FC<Props> = () => {
             variant="text"
             onClick={() => navigate('/home')}
           >
-            Home
+            {t('appBarMenu.home')}
           </Button>
           <Button sx={{ color: '#fff' }} variant="text">
-            Suggestions
+            {t('appBarMenu.suggestions')}
           </Button>
           <Button sx={{ color: '#fff' }} variant="text">
-            Message
+            {t('appBarMenu.message')}
           </Button>
         </Box>
 
