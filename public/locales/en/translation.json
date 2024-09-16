@@ -70,5 +70,10 @@
     "services": "Services",
     "news": "News",
     "help": "Help Center"
+  },
+  "appBarMenu": {
+    "home": "Home",
+    "suggestions": "Suggestions",
+    "message": "Message"
   }
 }
