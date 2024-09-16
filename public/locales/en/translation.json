@@ -75,5 +75,28 @@
     "home": "Home",
     "suggestions": "Suggestions",
     "message": "Message"
+  },
+  "suggestions": {
+    "search": "Search",
+    "filter": "Filter",
+    "filterModal": {
+      "sorting": "Sorting",
+      "latest": "The latest",
+      "popular": "Popular",
+      "leastSubmitted": "The least number of applications submitted",
+      "mostSubmitted": "Most applications submitted",
+      "lvlExperience": "Level of experience",
+      "intern": "Internships",
+      "basic": "Basic level",
+      "assistant": "Assistant",
+      "middle": "Middle level",
+      "expert": "Expert",
+      "location": "Location",
+      "vacancyType": "Vacancy type",
+      "fullTime": "Full time",
+      "partTime": "Part-time",
+      "remote": "Remote work",
+      "showResults": "Show results"
+    }
   }
 }

@@ -75,5 +75,27 @@
     "home": "Головна",
     "suggestions": "Пропозиції",
     "message": "Повідомлення"
+  },
+  "suggestions": {
+    "search": "Пошук",
+    "filter": "Фільтр",
+    "filterModal": {
+      "sorting": "Сортування",
+      "latest": "Останні",
+      "popular": "Популяні",
+      "leastSubmitted": "Найменше подано заявок",
+      "mostSubmitted": "Найбільше подано заявок",
+      "lvlExperience": "Рівень досвіду",
+      "intern": "Інтернатура",
+      "basic": "Базовий рівень",
+      "assistant": "Асистент",
+      "middle": "Середній рівень",
+      "expert": "Експерт",
+      "location": "Розташування",
+      "vacancyType": "Тип зайнятості",
+      "fullTime": "Повна зайнятість",
+      "partTime": "Неповна зайнятість",
+      "remote": "Віддалена робота",
+      "showResults": "Показати результати"
   }
 }
