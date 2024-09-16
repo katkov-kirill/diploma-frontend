@@ -7,7 +7,7 @@ import {
   Profile,
   Report,
   SignIn,
-  SignUp,
+  SignUp, Suggestions,
   Welcome,
 } from './components/pages';
 import { Route, Routes } from 'react-router-dom';
@@ -85,6 +85,15 @@ function App() {
             element={
               <PrivateRoute
                 component={<OnBoarding />}
+                isAuthenticated={user.isAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="suggestions"
+            element={
+              <PrivateRoute
+                component={<Suggestions />}
                 isAuthenticated={user.isAuthenticated}
               />
             }
