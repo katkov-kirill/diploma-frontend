@@ -29,6 +29,29 @@ export const SignUp = () => {
     setFormInputs((prev) => ({ ...prev, role: option?.value ?? '' }));
   };
 
+  const handleRegister = async () => {
+    try {
+      const response = await register({
+        first_name: formInputs.firstName,
+        last_name: formInputs.lastName,
+        password: formInputs.password,
+        email: formInputs.email,
+        password_confirmation: formInputs.password,
+        role: formInputs.role,
+      }).unwrap();
+
+      const { user } = response.data;
+
+      if (user) {
+        navigate('/sign-in');
+      } else {
+        console.error('Token or user data is missing');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
   console.log('formData: ', formInputs);
 
   return (
@@ -137,16 +160,7 @@ export const SignUp = () => {
             <Button
               fullWidth
               $variant="primary"
-              onClick={() => {
-                register({
-                  first_name: formInputs.firstName,
-                  last_name: formInputs.lastName,
-                  password: formInputs.password,
-                  email: formInputs.email,
-                  password_confirmation: formInputs.password,
-                  role: formInputs.role,
-                });
-              }}
+              onClick={handleRegister}
             >
               <Text fontWeight={600}>{t('general.signup')}</Text>
             </Button>
