@@ -1,4 +1,15 @@
-import { Box, Button, InputBase, Modal } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  InputBase,
+  Modal,
+  Radio,
+  RadioGroup,
+} from '@mui/material';
 import { TopNavBar } from '@components/common';
 import AddNewPostSvg from '@assets/icons/AddNewPost.svg';
 import VacanciesSvg from '@assets/icons/Vacancies.svg';
@@ -11,6 +22,8 @@ import { AddPostModal } from '@components/modules/AddPostModal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
+import { Simulate } from 'react-dom/test-utils';
+import submit = Simulate.submit;
 
 export const Suggestions = () => {
 
@@ -18,6 +31,28 @@ export const Suggestions = () => {
   const [isPostModalOpen, setIsPostModalOpen] = React.useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = React.useState(false);
   const [search, setSearch] = React.useState('');
+  const [sortingValue, setSortingValue] = React.useState('');
+  const [location, setLocation] = React.useState('');
+  const [filterData, setFilterData] = React.useState({
+    sortingValue: '',
+    intern: false,
+    basic: false,
+    middle: false,
+    assistant: false,
+    expert: false,
+    location: '',
+    fullTime: false,
+    partTime: false,
+    remote: false,
+  });
+
+  const handleSortingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSortingValue(e.target.value);
+  };
+
+  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocation(e.target.value);
+  };
 
   const handleClosePostModal = () => {
     setIsPostModalOpen(false);
@@ -35,9 +70,23 @@ export const Suggestions = () => {
     setIsFilterModalOpen(true);
   };
 
+  const handleFilterData = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(filterData);
+
+
+
+    handleCloseFilterModal();
+  };
+
   React.useEffect(() => {
 
   }, [search]);
+
+  React.useEffect(() => {
+
+    setFilterData({ ...filterData, sortingValue: sortingValue, location: location });
+  }, [location, sortingValue]);
 
   return (
     <Box
@@ -99,25 +148,136 @@ export const Suggestions = () => {
               onClose={handleCloseFilterModal}
               aria-labelledby={'modal-filter-title'}
             >
-              <Box sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                bgcolor: 'bg.main',
-                width: '500px',
-                boxShadow: 24,
-              }}
+              <Box component={'form'} onSubmit={handleFilterData}
+                   sx={{
+                     position: 'absolute',
+                     top: '50%',
+                     left: '50%',
+                     transform: 'translate(-50%, -50%)',
+                     bgcolor: 'bg.main',
+                     width: '600px',
+                     padding: '1rem',
+                     borderRadius: 5,
+                   }}
               >
                 <Typography id={'modal-filter-title'}
                             sx={{
                               textTransform: 'none',
                               textAlign: 'center',
-                              color: 'primary.main'
+                              color: 'primary.main',
                             }}>
-                  {t('suggestions.filter')}
-                </Typography>
-                <Typography sx={{color: 'primary.main'}} >{t('')}</Typography>
+                  {t('suggestions.filter')}</Typography>
+                <Typography sx={{
+                  color: 'primary.main',
+                  textTransform: 'none',
+                }}>
+                  {t('suggestions.filterModal.sorting')}</Typography>
+                <RadioGroup name={'sorting-group'}
+                            onChange={handleSortingChange}
+                            sx={{
+                              display: 'grid',
+                              gridTemplateColumns: '1fr 2fr',
+                              gap: 1,
+                            }}>
+                  <FormControlLabel control={<Radio />}
+                                    label={t('suggestions.filterModal.latest')} value={'latest'} />
+                  <FormControlLabel control={<Radio />}
+                                    label={t('suggestions.filterModal.leastSubmitted')} value={'least'} />
+                  <FormControlLabel control={<Radio />}
+                                    label={t('suggestions.filterModal.popular')} value={'popular'} />
+                  <FormControlLabel control={<Radio />}
+                                    label={t('suggestions.filterModal.mostSubmitted')} value={'most'} />
+                </RadioGroup>
+                <Divider sx={{ backgroundColor: '#28282C' }} />
+                <Typography sx={{
+                  color: 'primary.main',
+                  textTransform: 'none',
+                  mt: 1,
+                }}>
+                  {t('suggestions.filterModal.lvlExperience')}</Typography>
+                <FormGroup sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 2fr',
+                }}>
+                  <FormControlLabel control={<Checkbox checked={filterData.intern} onChange={(e) => setFilterData({
+                    ...filterData,
+                    intern: e.target.checked,
+                  })} />} label={t('suggestions.filterModal.intern')} />
+                  <FormControlLabel control={<Checkbox checked={filterData.assistant} onChange={(e) => setFilterData({
+                    ...filterData,
+                    assistant: e.target.checked,
+                  })} />}
+                                    label={t('suggestions.filterModal.assistant')} />
+                  <FormControlLabel control={<Checkbox checked={filterData.basic} onChange={(e) => setFilterData({
+                    ...filterData,
+                    basic: e.target.checked,
+                  })} />}
+                                    label={t('suggestions.filterModal.basic')} />
+                  <FormControlLabel control={<Checkbox checked={filterData.expert} onChange={(e) => setFilterData({
+                    ...filterData,
+                    expert: e.target.checked,
+                  })} />}
+                                    label={t('suggestions.filterModal.expert')} />
+                  <FormControlLabel control={<Checkbox checked={filterData.middle} onChange={(e) => setFilterData({
+                    ...filterData,
+                    middle: e.target.checked,
+                  })} />}
+                                    label={t('suggestions.filterModal.middle')} />
+                </FormGroup>
+                <Divider sx={{ backgroundColor: '#28282C' }} />
+                <Box sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: 5,
+                }}>
+                  <Box>
+                    <Typography sx={{
+                      color: 'primary.main',
+                      textTransform: 'none',
+                      mt: 1,
+                    }}>
+                      {t('suggestions.filterModal.location')}</Typography>
+                    <InputBase
+                      sx={{
+                        borderColor: 'secondary.light',
+                        borderWidth: 2,
+                        borderRadius: 2,
+                        mt: 1,
+                        padding: 0.5,
+                        color: 'secondary.main',
+                      }} fullWidth size={'small'} placeholder={t('suggestions.search')}
+                      onChange={handleLocationChange} />
+                  </Box>
+                  <Box>
+                    <Typography sx={{
+                      color: 'primary.main',
+                      textTransform: 'none',
+                      mt: 1,
+                    }}>
+                      {t('suggestions.filterModal.vacancyType')}</Typography>
+                    <FormGroup>
+                      <FormControlLabel control={<Checkbox checked={filterData.fullTime} onChange={(e) => {
+                        setFilterData({ ...filterData, fullTime: e.target.checked });
+                      }} />} label={t('suggestions.filterModal.fullTime')} />
+                      <FormControlLabel control={<Checkbox checked={filterData.partTime} onChange={(e) => {
+                        setFilterData({ ...filterData, partTime: e.target.checked });
+                      }} />} label={t('suggestions.filterModal.partTime')} />
+                      <FormControlLabel control={<Checkbox checked={filterData.remote} onChange={(e) => {
+                        setFilterData({ ...filterData, remote: e.target.checked });
+                      }} />} label={t('suggestions.filterModal.remote')} />
+                    </FormGroup>
+                  </Box>
+                </Box>
+                <Box sx={{ m: 2, display: 'flex', justifyContent: 'end' }}>
+                  <Button type={'submit'} sx={{
+                    color: 'secondary.main',
+                    backgroundColor: 'primary.main',
+                    ':hover': {
+                      color: 'primary.main',
+                      backgroundColor: 'secondary.light',
+                    },
+                  }} >{t('suggestions.filterModal.showResults')}</Button>
+                </Box>
               </Box>
             </Modal>
           </Box>
