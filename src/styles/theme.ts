@@ -14,4 +14,17 @@ export const theme = createTheme({
       light: '#D9D9D9',
     },
   },
+  typography: {
+    fontFamily: 'Saira',
+  },
+  components: {
+    MuiRadio: {
+      defaultProps: {
+        color: 'secondary',
+        sx: {
+          color: "secondary.main",
+        },
+      }
+    }
+  }
 });
