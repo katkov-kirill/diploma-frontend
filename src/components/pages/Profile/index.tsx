@@ -1,4 +1,4 @@
-import { RightManagingProfilePanel, TopNavBar } from '@components/common';
+import { RightNavBar, TopNavBar } from '@components/common';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useGetProfileQuery } from '@services/profileApi';
 import { SpecificUserProfile } from '@components/modules';
@@ -10,7 +10,7 @@ export const Profile = () => {
 
   // TODO setup id
   // TODO Full skills popup
-  // TODO background image processing
+  // TODO background image 7
   // TODO short description line must be under 30 caracters
   // TODO fix font family for input text in Section component
   // const userId = 'user1';
@@ -31,7 +31,7 @@ export const Profile = () => {
       {/* navigation top bar */}
       <TopNavBar />
 
-      {isLoading ? (
+      {!response || isLoading ? (
         <Box
           sx={{
             display: 'flex',
@@ -53,7 +53,7 @@ export const Profile = () => {
             },
             gap: 2,
             padding: 2,
-            height: '100vh',
+            height: '100%',
             backgroundColor: '#16191e',
           }}
         >
@@ -69,7 +69,7 @@ export const Profile = () => {
             }}
           >
             <Typography variant="h6" sx={{ color: '#fff' }}>
-              Left Panel
+              {/* Left Panel */}
             </Typography>
           </Box>
 
@@ -85,7 +85,7 @@ export const Profile = () => {
             }}
           >
             {/* right panel */}
-            <RightManagingProfilePanel
+            <RightNavBar
               sx={{
                 display: {
                   xs: 'none',

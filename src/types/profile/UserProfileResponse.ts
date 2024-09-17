@@ -3,19 +3,16 @@ import { Skill } from "./Skill";
 export type UserProfileResponse = {
     profile: {
         user: {
-            role: 'Employee',
-            first_name: string;
-            last_name: string;
+            role: string,
+            name: string;
             position: string;
             location: string;
             about_info: string;
             skills_desc: string;
-            experience: string;
             education: string;
-            skills: Array<Skill> | null;
         };
         company: {
-            role: 'Employer',
+            role: string,
             about_info: string;
             contact_email: string;
             contact_phone: string;
@@ -23,6 +20,7 @@ export type UserProfileResponse = {
             description: string;
             location: string;
             name: string;
-        }
+        };
+        skills: Array<Skill> | null;
     };
 };

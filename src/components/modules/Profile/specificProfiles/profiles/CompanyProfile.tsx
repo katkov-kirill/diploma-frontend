@@ -68,7 +68,7 @@ export const CompanyProfile = ({
           <Section
             sectionData={{
               title: t('profilePage.company.aboutUserTitle'),
-              content: profileResponse.profile.company.about_info,
+              content: profileResponse.profile.company.description,
               isOwner: profileData.isOwner,
               skills: null,
             }}
@@ -106,7 +106,7 @@ export const CompanyProfile = ({
         <Section
           sectionData={{
             title: t('profilePage.company.projectsTitle'),
-            content: profileResponse.profile.company.description,
+            content: profileResponse.profile.company.about_info,
             isOwner: profileData.isOwner,
             skills: null,
           }}

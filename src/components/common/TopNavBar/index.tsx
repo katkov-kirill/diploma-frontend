@@ -10,17 +10,18 @@ import { Props } from 'react-select';
 import { Logo } from '../Logo';
 import { Text } from '@components/common';
 import { useTranslation } from 'react-i18next';
-import NotificationSvg from '@assets/icons/Notification.svg';
 import { useParams } from 'react-router-dom';
 import { useGetProfileQuery } from 'src/services/profileApi';
 import { useEffect, useState } from 'react';
 import { isCompanyRole } from 'src/functions';
 import { ProfileResponse } from 'src/types';
+import NotificationSvg from '@assets/icons/Notification.svg';
 
 export const TopNavBar: React.FC<Props> = () => {
   const { t } = useTranslation();
-  
-  localStorage.setItem('user', 'user-1');
+
+  // TODO: setup correct user id
+  localStorage.setItem('user', 'user-4');
 
   const { id } = useParams<{ id: string }>();
   const {
@@ -30,20 +31,35 @@ export const TopNavBar: React.FC<Props> = () => {
   } = useGetProfileQuery(localStorage.getItem('user'));
   const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
   const [role, setRole] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
     console.log('Loading profile');
-    console.log(response);
-    // TODO: fix code here
-    if (!isLoading) {
+    console.log('Response from API:', response);
+    console.log('Error:', error);
+
+    if (error) {
+      console.error('Error fetching profile:', error);
+    }
+
+    if (!isLoading && response) {
       setProfileData(response as ProfileResponse);
+
       const userRole = isCompanyRole(response)
         ? response?.profile.company.role
         : response?.profile.user.role;
-        console.log('user role: ' + userRole);
+
+      const name = isCompanyRole(response)
+        ? response?.profile.company.name
+        : response?.profile.user.name;
+
+      console.log('User role:', userRole);
+      console.log('User name:', name);
+
       setRole(userRole);
+      setUserName(name);
     }
-  }, [response]);
+  }, []);
 
   return (
     <>
@@ -62,7 +78,7 @@ export const TopNavBar: React.FC<Props> = () => {
               display: 'grid',
               gridTemplateColumns: {
                 xs: '1fr 1fr',
-                md: '1fr auto 1fr'
+                md: '1fr auto 1fr',
               },
               alignItems: 'center',
             }}
@@ -97,7 +113,8 @@ export const TopNavBar: React.FC<Props> = () => {
                   {t('topNavBar.homeButton')}
                 </Text>
               </Button>
-              {isCompanyRole(response) ? (
+
+              {response && isCompanyRole(response) ? (
                 <Button
                   sx={{ color: '#fff', textTransform: 'none' }}
                   variant="text"
@@ -132,6 +149,7 @@ export const TopNavBar: React.FC<Props> = () => {
                   </Text>
                 </Button>
               )}
+
               <Button
                 sx={{ color: '#fff', textTransform: 'none' }}
                 variant="text"
@@ -148,7 +166,8 @@ export const TopNavBar: React.FC<Props> = () => {
                   {t('topNavBar.messageButton')}
                 </Text>
               </Button>
-              {isCompanyRole(response) ? (
+
+              {response && isCompanyRole(response) ? (
                 <Button
                   sx={{ color: '#fff', textTransform: 'none' }}
                   variant="text"
@@ -165,9 +184,7 @@ export const TopNavBar: React.FC<Props> = () => {
                     {t('topNavBar.notificationsButton')}
                   </Text>
                 </Button>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -177,11 +194,8 @@ export const TopNavBar: React.FC<Props> = () => {
                     variant="body1"
                     sx={{ color: '#fff', fontWeight: 600 }}
                   >
-                    {isCompanyRole(response)
-                      ? profileData?.profile.company.name
-                      : profileData?.profile.user.first_name +
-                        ' ' +
-                        profileData?.profile.user.last_name}
+                    {/* TODO fix bug with loading here (09.12.24) */}
+                    {userName ? userName : 'Loading...'}
                   </Typography>
 
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -202,10 +216,11 @@ export const TopNavBar: React.FC<Props> = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         maxHeight: '21px',
+                        marginLeft: '20%'
                       }}
                     >
                       {/* TODO: refactor this code */}
-                      {role == 'company' ? 'Company' : 'User'}
+                      {role == 'company' ? 'Employer' : 'Employee'}
                     </Box>
                   </Box>
                 </Stack>

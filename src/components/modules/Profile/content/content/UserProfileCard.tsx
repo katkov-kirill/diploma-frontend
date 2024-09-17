@@ -39,7 +39,7 @@ export const UserProfileCard = ({
 
   // Function to handle opening a specific popup
   const handleOpenPopup = (popupName: string) => {
-    setPopupOpen((prevState) => ({
+    setPopupOpen((prevState) => ({ 
       ...prevState,
       [popupName]: true,
     }));
@@ -65,7 +65,8 @@ export const UserProfileCard = ({
           gap: 2,
           alignItems: 'center',
           backgroundColor: '#28282C',
-          padding: 2,
+          padding: 3,
+          // marginBottom: '10px',
           borderRadius: '20px', // bgImage here
           height: {
             xs: !editMode ? '108px' : 'auto',
@@ -114,7 +115,7 @@ export const UserProfileCard = ({
                 variant="h6"
                 fontSize={{
                   xs: editMode
-                    ? `${windowWidth - windowWidth * 0.96}pt`
+                    ? `${windowWidth - windowWidth * 0.970}pt`
                     : '14px',
                   md: '20px',
                 }}
@@ -147,16 +148,14 @@ export const UserProfileCard = ({
                 fontSize={{
                   // TODO: set onChange -> smaller text - bigger font size
                   xs: editMode
-                    ? `${windowWidth - windowWidth * 0.98 + 1.5}px`
-                    : '16px',
-                  md: '18px'
+                    ? `${windowWidth - windowWidth * 0.975}px`
+                    : `${windowWidth - windowWidth * 0.975}px`,
+                  md: '12pt'
                 }}
                 color="#F7F7F7"
                  lineHeight={{
-                  xs: editMode
-                    ? `${windowWidth - windowWidth * 0.99 + 22}px`
-                    : '10px',
-                  md: '10px',
+                  xs: '10px',
+                  md: '15px',
                 }}
                 fontWeight={300}
               >
@@ -168,7 +167,7 @@ export const UserProfileCard = ({
                   // TODO: set onChange -> smaller text - bigger font size
                   xs: editMode
                     ? `${windowWidth - windowWidth * 0.98}pt`
-                    : '14px',
+                    : `${windowWidth - windowWidth * 0.98}pt`,
                   md: '15px',
                 }}
                 color="#F7F7F7"

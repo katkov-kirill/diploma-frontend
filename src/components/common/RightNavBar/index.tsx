@@ -9,7 +9,7 @@ import LogOutSvg from '@assets/icons/LogOut.svg';
 import { Text } from '@components/common';
 import { useTranslation } from 'react-i18next';
 
-export const RightManagingProfilePanel: React.FC<Props> = () => {
+export const RightNavBar: React.FC<Props> = () => {
   const { t } = useTranslation();
 
   return (
@@ -127,6 +127,8 @@ export const RightManagingProfilePanel: React.FC<Props> = () => {
           textTransform: 'none',
           width: '100%',
         }}
+        password123
+        password1234
       >
         <img src={SettingsSvg} alt="Settings" style={{ marginRight: '8px' }} />
         <p>

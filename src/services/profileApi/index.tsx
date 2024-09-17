@@ -8,8 +8,17 @@ export const profileApi = createApi({
         query: (id) => `profile/${id}`,
         transformResponse: (response: any) => response.data
       }),
+      updateProfile: builder.mutation({
+        query: ({ id, ...formData }) => ({
+          url: `profile/${id}`,
+          method: 'PUT',
+          body: {
+            ...formData,
+          },
+        }),
+      }),
     }),
   });
   
 
-export const {useGetProfileQuery  } = profileApi;
+export const {useGetProfileQuery, useUpdateProfileMutation } = profileApi;

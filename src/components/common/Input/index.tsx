@@ -5,6 +5,7 @@ export const Input: React.FC<Props> = ({
   name,
   onChange,
   style,
+  id,
   defaultValue
 }) => {
   return (

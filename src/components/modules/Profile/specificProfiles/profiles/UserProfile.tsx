@@ -4,26 +4,44 @@ import { UserProfileCard } from '../../content';
 import { ProfileCard } from 'src/types';
 import { Section } from '../../content';
 import { useTranslation } from 'react-i18next';
+import React, { useEffect } from 'react';
 
 export const UserProfile = ({
   profileResponse,
-  isOwner
+  isOwner,
 }: {
   profileResponse: UserProfileResponse;
-  isOwner: boolean
+  isOwner: boolean;
 }) => {
   const { t } = useTranslation();
 
   const profileData: ProfileCard = {
-    name:
-      profileResponse.profile.user.first_name +
-      ' ' +
-      profileResponse.profile.user.last_name,
+    name: profileResponse.profile.user.name,
     role: 'Employee',
     shortDescription: profileResponse.profile.user.position,
     location: profileResponse.profile.user.location,
     skills: [],
-    isOwner: false,
+    isOwner: true,
+  };
+
+  const [formInputs, setFormInputs] = React.useState({
+    skills_desc: '',
+    about_info: '',
+    education: '',
+    experience: '',
+  });
+
+  useEffect(() => {
+    // TODO: set correct values after double click and cha
+    console.log('profile response from UserProfile', profileResponse.profile.user.skills);
+  }, []);
+
+  // console.log('form inputs: ', formInputs);
+
+  const handleContentChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
+    setFormInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -32,10 +50,16 @@ export const UserProfile = ({
         padding: 2,
         borderRadius: 2,
         gridTemplateRows: '1fr auto auto auto auto auto auto',
-        backgroundColor: '#16191e'
+        backgroundColor: '#16191e',
       }}
     >
-      <UserProfileCard profileCardData={profileData} editMode={false} />
+      {/* TODO: setup showSkills by the ownership of the page */}
+      <UserProfileCard
+        profileCardData={profileData}
+        editMode={false}
+        size={''}
+        showSkills={false}
+      />
 
       {/* about me + full skills */}
       <Box
@@ -43,7 +67,7 @@ export const UserProfile = ({
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
-            md: '3fr 1fr'
+            md: '3fr 1fr',
           },
           gap: 2,
           alignItems: 'center',
@@ -56,6 +80,7 @@ export const UserProfile = ({
             backgroundColor: '#28282C',
             borderRadius: '20px',
             padding: 2,
+            height: '100%',
           }}
         >
           <Section
@@ -63,9 +88,11 @@ export const UserProfile = ({
               title: t('profilePage.user.aboutUserTitle'),
               content: profileResponse.profile.user.about_info,
               isOwner: profileData.isOwner,
-              skills: null
+              skills: null,
             }}
             isSkillsSection={false}
+            contextName="about_info"
+            onContentChange={handleContentChange}
           />
         </Box>
         <Box
@@ -75,11 +102,23 @@ export const UserProfile = ({
             padding: 2,
             display: {
               xs: 'none',
-              md: 'flex'
+              md: 'flex',
             },
             height: '100%',
           }}
         >
+          <Section
+            sectionData={{
+              title: 'Full skills',
+              // title: t('profilePage.user.aboutUserTitle'),
+              content: '',
+              isOwner: profileData.isOwner,
+              skills: profileResponse.profile.skills,
+            }}
+            isSkillsSection={true}
+            contextName="skills"
+            onContentChange={handleContentChange}
+          />
           {/* <Typography variant="h6" sx={{ color: '#fff' }}>
             Full skills
           </Typography> */}
@@ -100,11 +139,12 @@ export const UserProfile = ({
             title: t('profilePage.user.aboutSkillsTitle'),
             content: profileResponse.profile.user.skills_desc,
             isOwner: profileData.isOwner,
-            skills: null
+            skills: null,
           }}
           isSkillsSection={false}
+          contextName="skills_desc"
+          onContentChange={handleContentChange}
         />
-        
       </Box>
 
       {/* experience */}
@@ -121,9 +161,11 @@ export const UserProfile = ({
             title: t('profilePage.user.aboutExperienceTitle'),
             content: profileResponse.profile.user.experience,
             isOwner: profileData.isOwner,
-            skills: null
+            skills: null,
           }}
           isSkillsSection={false}
+          contextName="experience"
+          onContentChange={handleContentChange}
         />
       </Box>
 
@@ -141,9 +183,11 @@ export const UserProfile = ({
             title: t('profilePage.user.aboutEducationTitle'),
             content: profileResponse.profile.user.education,
             isOwner: profileData.isOwner,
-            skills: null
+            skills: null,
           }}
           isSkillsSection={false}
+          contextName="education"
+          onContentChange={handleContentChange}
         />
       </Box>
     </Box>

@@ -1,4 +1,5 @@
-export { isUserProfileResponse } from './functions/functions';
-export { isCompanyProfileResponse } from './functions/functions';
-export { isUserRole } from './functions/functions';
-export { isCompanyRole } from './functions/functions';
+export { isUserProfileResponse } from './profile/functions';
+export { isCompanyProfileResponse } from './profile/functions';
+export { isUserRole } from './profile/functions';
+export { isCompanyRole } from './profile/functions';
+export { saveProfile } from './profile/functions';

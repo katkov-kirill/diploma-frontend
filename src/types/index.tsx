@@ -1,5 +1,6 @@
-export type { ProfileCard } from './types/ProfileCard';
-export type { ProfileResponse } from './types/ProfileResponse';
-export type { SectionData } from './types/SectionData';
-export type { Skill } from './types/Skill';
-export type { UserProfileResponse } from './types/UserProfileResponse';
+export type { ProfileCard } from './profile/ProfileCard';
+export type { ProfileResponse } from './profile/ProfileResponse';
+export type { SectionData } from './profile/SectionData';
+export type { Skill } from './profile/Skill';
+export type { UserProfileResponse } from './profile/UserProfileResponse';
+export type { UpdateResponse } from './profile/UpdateResponse';

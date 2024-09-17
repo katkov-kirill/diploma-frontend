@@ -26,7 +26,7 @@ interface ProfilePopupProps {
   onClose: () => void;
 }
 
-export const EditProfilePopup: React.FC<ProfilePopupProps> = ({
+export const EditSkillsPopup: React.FC<ProfilePopupProps> = ({
   open,
   profileCard,
   onSave,
