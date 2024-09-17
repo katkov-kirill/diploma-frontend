@@ -25,6 +25,14 @@ export const theme = createTheme({
           color: "secondary.main",
         },
       }
+    },
+    MuiCheckbox: {
+      defaultProps: {
+        color: 'secondary',
+        sx: {
+          color: 'secondary.main',
+        }
+      }
     }
   }
 });
