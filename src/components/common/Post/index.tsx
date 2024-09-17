@@ -23,12 +23,9 @@ export type Post = {
 export const Post: React.FC<Post> = ({
   content,
   created_at,
-  id,
   images,
-  status,
   title,
   user,
-  visibility,
 }) => {
   return (
     <Stack sx={{ bgcolor: '#28282C' }} borderRadius="15px" overflow="hidden">

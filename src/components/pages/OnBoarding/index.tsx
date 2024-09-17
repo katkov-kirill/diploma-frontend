@@ -19,7 +19,6 @@ export const OnBoarding = () => {
       minHeight="calc(100vh - 24px)"
       display="flex"
       flexDirection="column"
-      jk
       justifyContent={{
         xs: 'end',
         md: 'space-between',
