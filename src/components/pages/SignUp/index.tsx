@@ -15,7 +15,8 @@ export const SignUp = () => {
     lastName: '',
     email: '',
     password: '',
-    role: '',
+    role: 'user',
+    name: '',
   });
   const { t } = useTranslation();
   const [register] = useRegisterMutation();
@@ -29,16 +30,31 @@ export const SignUp = () => {
     setFormInputs((prev) => ({ ...prev, role: option?.value ?? '' }));
   };
 
-  const handleRegister = async () => {
-    try {
-      const response = await register({
+  const getRegisterData = function() {
+    if (formInputs.role == 'user'){
+      return {
         first_name: formInputs.firstName,
         last_name: formInputs.lastName,
         password: formInputs.password,
         email: formInputs.email,
         password_confirmation: formInputs.password,
         role: formInputs.role,
-      }).unwrap();
+      }
+    } else {
+      return {
+        name: formInputs.firstName + ' ' + formInputs.lastName,
+        password: formInputs.password,
+        email: formInputs.email,
+        password_confirmation: formInputs.password,
+        role: formInputs.role,
+      }
+    }
+  }
+
+  const handleRegister = async () => {
+    try {  
+
+      const response = await register(getRegisterData()).unwrap();
 
       const { user } = response.data;
 
@@ -111,14 +127,14 @@ export const SignUp = () => {
               className="mb-[16px]"
               placeholder="First name"
               onChange={handleChange}
-            />
-            <Input
-              name="lastName"
-              type="text"
-              className="mb-[16px]"
-              placeholder="Last name"
-              onChange={handleChange}
-            />
+              />
+              <Input
+                name="lastName"
+                type="text"
+                className="mb-[16px]"
+                placeholder="Last name"
+                onChange={handleChange}
+              />
             <Input
               name="email"
               type="email"
@@ -205,4 +221,6 @@ export const SignUp = () => {
       </Stack>
     </Box>
   );
+
+  
 };
