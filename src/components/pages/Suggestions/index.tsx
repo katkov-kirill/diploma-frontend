@@ -22,8 +22,6 @@ import { AddPostModal } from '@components/modules/AddPostModal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
-import { Simulate } from 'react-dom/test-utils';
-import submit = Simulate.submit;
 
 export const Suggestions = () => {
 
