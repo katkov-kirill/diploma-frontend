@@ -3,10 +3,13 @@ import { ContentLayout, TopNavBar } from '@components/common';
 import { Loader } from '@components/common/Loader';
 import { Post } from '@components/common/Post';
 import { Stack } from '@mui/material';
-import { useGetAllPostsQuery } from 'src/services/postsApi';
+import { useGetPostsFeedQuery } from 'src/services/postsApi';
+import { useAppSelector } from 'src/hooks';
+import { RootState } from 'src/store/store';
 
 export const Home = () => {
-  const { data: postsResponse, isLoading } = useGetAllPostsQuery();
+  const user = useAppSelector((state: RootState) => state.user);
+  const { data: postsResponse, isLoading } = useGetPostsFeedQuery(user.user?.id as string);
 
   return (
     <>

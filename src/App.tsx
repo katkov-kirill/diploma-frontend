@@ -11,7 +11,7 @@ import {
   Welcome,
 } from './components/pages';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import { Home } from '@components/pages/Home';
@@ -24,10 +24,11 @@ import { RootState } from './store/store';
 import { Stack } from '@mui/material';
 import { loginSuccess } from './store/userSlice';
 import { useGetCurrentUserQuery } from './services/userApi';
+import { useAppSelector } from './hooks';
 
 function App() {
   const { data: userData, isLoading } = useGetCurrentUserQuery();
-  const user = useSelector((state: RootState) => state.user);
+  const user = useAppSelector((state: RootState) => state.user);
   const authToken = localStorage.getItem('authToken');
   const dispatch = useDispatch();
 

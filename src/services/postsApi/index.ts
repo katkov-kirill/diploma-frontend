@@ -14,6 +14,17 @@ export const postsApi = createApi({
       }),
       providesTags: ['Posts'],
     }),
+    getPostsFeed: builder.query<{ data: Post[] }, string>({
+      query: (userId: string) => ({
+        url: 'posts-feed/' + userId ,
+        params: {
+          page: 1,
+          limit: 15
+        },
+        method: 'GET',
+      }),
+      providesTags: ['Posts'],
+    }),
     createPost: builder.mutation({
       query: (formData) => ({
         url: 'posts',
@@ -25,4 +36,4 @@ export const postsApi = createApi({
   }),
 });
 
-export const { useGetAllPostsQuery, useCreatePostMutation } = postsApi;
+export const { useGetAllPostsQuery, useCreatePostMutation, useGetPostsFeedQuery } = postsApi;
