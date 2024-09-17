@@ -68,11 +68,19 @@ export const Suggestions = () => {
     setIsFilterModalOpen(true);
   };
 
-  const handleFilterData = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFilterData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(filterData);
 
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filterData),
+    }
 
+    await fetch(``, requestOptions)
+      .then((res) => res.json())
+      .catch((err) => {console.error(err);})
 
     handleCloseFilterModal();
   };
