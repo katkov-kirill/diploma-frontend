@@ -5,7 +5,7 @@ import {
   Divider,
   FormControlLabel,
   FormGroup,
-  InputBase,
+  InputBase, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText,
   Modal,
   Radio,
   RadioGroup,
@@ -23,9 +23,45 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 
+// Test
+
+interface ISuggestion {
+  id: string,
+  title: string,
+  company_id: number,
+  position: string,
+  description: string,
+  requirements: string,
+  requirement_experience: string,
+  date_posted: string,
+  valid_until: string,
+}
+
 export const Suggestions = () => {
 
+  const mySuggestions: ISuggestion[] = [
+    {
+      title: 'title1', company_id: 1, position: 'pos1',
+      description: 'desc1', requirements: 'req1', requirement_experience: 'reqExp1',
+      date_posted: 'posted1', valid_until: 'valid1',
+      id: '1',
+    },
+    {
+      title: 'title2', company_id: 2, position: 'pos2',
+      description: 'desc2', requirements: 'req2', requirement_experience: 'reqExp2',
+      date_posted: 'posted2', valid_until: 'valid2',
+      id: '2',
+    },
+    {
+      title: 'title3', company_id: 3, position: 'pos3',
+      description: 'desc3', requirements: 'req3', requirement_experience: 'reqExp3',
+      date_posted: 'posted3', valid_until: 'valid3',
+      id: '3',
+    },
+  ];
+
   const { t } = useTranslation('translation');
+  const [suggestions, setSuggestions] = React.useState([]);
   const [isPostModalOpen, setIsPostModalOpen] = React.useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = React.useState(false);
   const [search, setSearch] = React.useState('');
@@ -76,18 +112,31 @@ export const Suggestions = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(filterData),
-    }
+    };
 
     await fetch(``, requestOptions)
       .then((res) => res.json())
-      .catch((err) => {console.error(err);})
+      .catch((err) => {
+        console.error(err);
+      });
 
     handleCloseFilterModal();
   };
 
-  React.useEffect(() => {
+  const getSuggestions = React.useCallback(async () => {
+    await fetch(``)
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => setSuggestions(data))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
-  }, [search]);
+  React.useEffect(() => {
+    getSuggestions();
+  },[getSuggestions]);
 
   React.useEffect(() => {
 
@@ -149,6 +198,7 @@ export const Suggestions = () => {
                 <Typography textTransform={'none'}>{t('suggestions.filter')}</Typography>
               </Button>
             </Box>
+            {/*Filter Modal*/}
             <Modal
               open={isFilterModalOpen}
               onClose={handleCloseFilterModal}
@@ -236,7 +286,8 @@ export const Suggestions = () => {
                   gridTemplateColumns: '1fr 1fr',
                   gap: 5,
                 }}>
-                  <Box>
+                  {/*Offer Location*/}
+                  <Box display={'none'}>
                     <Typography sx={{
                       color: 'primary.main',
                       textTransform: 'none',
@@ -254,7 +305,8 @@ export const Suggestions = () => {
                       }} fullWidth size={'small'} placeholder={t('suggestions.search')}
                       onChange={handleLocationChange} />
                   </Box>
-                  <Box>
+                  {/*Vacancy type*/}
+                  <Box display={'none'}>
                     <Typography sx={{
                       color: 'primary.main',
                       textTransform: 'none',
@@ -282,15 +334,34 @@ export const Suggestions = () => {
                       color: 'primary.main',
                       backgroundColor: 'secondary.light',
                     },
-                  }} >{t('suggestions.filterModal.showResults')}</Button>
+                  }}>{t('suggestions.filterModal.showResults')}</Button>
                 </Box>
               </Box>
             </Modal>
           </Box>
-          <Box sx={{
-            bgcolor: 'whitesmoke', width: '100%',
+          {/*Suggestions*/}
+          <Box  sx={{
           }}>
-
+            <List >
+              {
+                mySuggestions && mySuggestions.map((suggestion) => {
+                  return (
+                    <ListItemButton sx={{
+                      bgcolor: '#28282C',
+                      borderRadius: 3,
+                      marginTop: 1
+                    }} onClick={() => console.log(suggestion)} >
+                      <ListItemAvatar ><img src={VacanciesSvg} alt="listItem" /></ListItemAvatar>
+                      <Box>
+                        <ListItemText color={'secondary.main'}>{suggestion.company_id}</ListItemText>
+                        <Typography variant={'subtitle2'} >Position: {suggestion.position}</Typography>
+                      </Box>
+                      <Typography>{suggestion.description}</Typography>
+                    </ListItemButton>
+                  )
+                })
+              }
+            </List>
           </Box>
         </Box>
 
