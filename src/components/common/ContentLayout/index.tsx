@@ -8,6 +8,10 @@ import ReportProblemSvg from '@assets/icons/ReportProblem.svg';
 import SettingsSvg from '@assets/icons/Settings.svg';
 import { Text } from '../Text';
 import VacanciesSvg from '@assets/icons/Vacancies.svg';
+import { useLogoutMutation } from 'src/services/userApi';
+import { useNavigate } from 'react-router-dom';
+import { logoutSuccess } from 'src/store/userSlice';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   children: React.ReactNode;
@@ -15,6 +19,9 @@ type Props = {
 
 export const ContentLayout: React.FC<Props> = ({ children }) => {
   const [isPostModalOpen, setIsPostModalOpen] = React.useState(false);
+  const [logout] = useLogoutMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClosePostModal = () => {
     setIsPostModalOpen(false);
@@ -22,6 +29,20 @@ export const ContentLayout: React.FC<Props> = ({ children }) => {
 
   const handleOpenPostModal = () => {
     setIsPostModalOpen(true);
+  };
+
+  const handleLogout = async () => {
+    try {
+      logout;
+
+      dispatch(
+        logoutSuccess()
+      );
+
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -146,6 +167,7 @@ export const ContentLayout: React.FC<Props> = ({ children }) => {
             textTransform: 'none',
             width: '100%',
           }}
+          onClick={handleLogout}
         >
           <img src={LogOutSvg} alt="Log out" style={{ marginRight: '8px' }} />
           <p> Log out</p>
