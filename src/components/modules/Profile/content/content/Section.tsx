@@ -7,6 +7,7 @@ import { useUpdateProfileMutation } from '@services/profileApi';
 import { saveProfile } from 'src/functions';
 import { SkillSectionLine } from '..';
 import TextField from '@mui/material/TextField';
+import { EditSkillsPopup } from '../../popups';
 
 export const Section = ({
   sectionData,
@@ -26,11 +27,12 @@ export const Section = ({
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(sectionData.content);
   const [projectsDescription, setProjectsDescription] = useState<string[]>([]);
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
   const [updateProfile] = useUpdateProfileMutation();
 
-  if (isSkillsSection) console.log('skills', skills);
-  if (isSkillsSection) console.log('section data', sectionData);
+  // if (isSkillsSection) console.log('skills', skills);
+  // if (isSkillsSection) console.log('section data', sectionData);
 
   const handleDoubleClick = () => {
     sectionData.isOwner && setIsEditing(true);
@@ -49,6 +51,16 @@ export const Section = ({
   // const handleBlur = () => {
   //   setIsEditing(false);
   // };
+
+  const handleOpenSkillsPopup = () => {
+    setPopupOpen(true);
+    console.log('handleOpenSkillsPopup', isPopupOpen);
+  };
+
+  const handleCloseSkillsPopup = () => {
+    setPopupOpen(false);
+    console.log('handleCloseSkillsPopup', isPopupOpen);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setContent(event.target.value);
@@ -124,9 +136,9 @@ export const Section = ({
               height: '20px',
               padding: 0,
               border: '1px solid #16191E',
-              color: '#16191E'
+              color: '#16191E',
             }}
-            onClick={handleSave}
+            onClick={handleOpenSkillsPopup}
           >
             <Text
               variant="subtitle1"
@@ -137,6 +149,7 @@ export const Section = ({
               {t('profilePage.editButtonText')}
             </Text>
           </Button>
+        <EditSkillsPopup open={isPopupOpen} skills={skills} onClose={handleCloseSkillsPopup} onSave={() => {}}/>
         </Box>
       )}
 

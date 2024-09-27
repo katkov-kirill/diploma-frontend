@@ -56,7 +56,7 @@ export const EditPhotoPopup: React.FC<PhotoPopupProps> = ({
           },
           height: {
             xs: '100%',
-            md: '399px'
+            md: '435px'
           },
           padding: '20px',
           borderRadius: '20px'

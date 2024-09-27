@@ -2,9 +2,8 @@ import { Avatar, Box, Chip } from '@mui/material';
 import { ProfileCard } from 'src/types';
 import { Button, Text } from '@components/common';
 import { useTranslation } from 'react-i18next';
-import { EditPhotoPopup } from '../../popups';
 import { useEffect, useState } from 'react';
-import { EditProfilePopup } from '../../popups';
+import { EditProfilePopup, EditPhotoPopup } from '../../popups';
 
 export const UserProfileCard = ({
   profileCardData,
@@ -39,7 +38,7 @@ export const UserProfileCard = ({
 
   // Function to handle opening a specific popup
   const handleOpenPopup = (popupName: string) => {
-    setPopupOpen((prevState) => ({ 
+    setPopupOpen((prevState) => ({
       ...prevState,
       [popupName]: true,
     }));
@@ -115,7 +114,7 @@ export const UserProfileCard = ({
                 variant="h6"
                 fontSize={{
                   xs: editMode
-                    ? `${windowWidth - windowWidth * 0.970}pt`
+                    ? `${windowWidth - windowWidth * 0.97}pt`
                     : '14px',
                   md: '20px',
                 }}
@@ -150,10 +149,10 @@ export const UserProfileCard = ({
                   xs: editMode
                     ? `${windowWidth - windowWidth * 0.975}px`
                     : `${windowWidth - windowWidth * 0.975}px`,
-                  md: '12pt'
+                  md: '12pt',
                 }}
                 color="#F7F7F7"
-                 lineHeight={{
+                lineHeight={{
                   xs: '10px',
                   md: '15px',
                 }}

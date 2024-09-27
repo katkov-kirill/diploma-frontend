@@ -4,3 +4,4 @@ export type { SectionData } from './profile/SectionData';
 export type { Skill } from './profile/Skill';
 export type { UserProfileResponse } from './profile/UserProfileResponse';
 export type { UpdateResponse } from './profile/UpdateResponse';
+export type { SkillsList } from './profile/SkillsList';
